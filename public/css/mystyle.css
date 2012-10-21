@@ -1,0 +1,129 @@
+
+div#container
+{
+    margin: 0 auto;  /* to center the layout horizontally */
+    width: 950px; /*insert the width of your choice here */
+}
+
+body 
+{ 
+    background-image: url(../images/bckground.png);
+    background-repeat: repeat;
+    font: 11px/20px Georgia, 'Times New Roman', Times, serif;
+    color:#003399;
+    font-size:0.77em;
+    text-align:left;
+    margin:0;
+    padding:0;
+}
+
+.mapSpace {
+    /*width: 100%;*/
+    width: 950px;
+    height: 250px;
+}
+
+.hideRow {
+    display: none;
+}
+
+h1 {     
+    letter-spacing: 6px;
+    font-size: 1.6em;
+    color: #573696;
+    font-weight: bold;
+    text-align: center;
+}
+
+h2 {
+    text-align: left;
+    letter-spacing: 1.5px;
+    font-size: 1.2em;
+    color: #573696;
+    font-weight: bold;
+}
+
+h2.displayFlight
+{
+ text-align: center;   
+}
+
+.arrivalForm {
+    text-align: left;
+    letter-spacing: 1.5px;
+    font-size: 1.2em;
+    color: #573696;
+    font-weight: bold;
+}
+
+
+p{
+    text-align:left;
+    font-size: 1.5em;
+    color:#003399;
+    font-weight: normal;
+}
+
+#departureUpdateTime {
+    color: #F90707;
+}
+
+#arrivalUpdateTime {
+    color: #F500F7;
+}
+
+.box1 {
+    margin: 0px;
+    padding: 0px;
+    width: 40%;
+
+}
+
+.red {
+    background: #CBE0E1;  
+    height: 150px;
+    float: left;
+}
+
+.green {
+    background: #CBE0E1;
+    height: 150px;
+    float: right;
+}
+
+#progressbar1 {
+    width: 99%;
+}
+
+#progressbar2 {
+    width: 99%;
+}
+
+#searchFlight {
+    clear: both;
+}
+
+.ajaxPart1 {
+    color:#EA9B13;
+    text-align: center;
+}
+
+.ajaxPart2 {
+    color:#EA9B13;
+    text-align: center;
+}
+
+a {
+    color: #be7429;
+    text-decoration: none;
+}
+
+
+a:hover {
+    color:#ABD550;
+    text-decoration: underline;
+}
+address {
+    margin-top: 1em;
+    padding-top: 1em;
+    border-top: thin dotted }

@@ -1,0 +1,247 @@
+/* CSS Reset
+----------------------------------------------------------*/
+/*
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td
+{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+}
+*/
+
+table
+{
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* Table style
+----------------------------------------------------------*/
+table.tbl1
+{
+    /*width: 100%;*/
+    width: 950px;
+}
+
+table.tbl1 thead
+{
+    /*background: #A3C2EA url('../images/tbl_head_bg.png') repeat-x scroll 0 0;*/
+    background: #ccffcc;
+    text-align: center;
+    color: #333;
+    /*width: 100%;*/
+    width: 950px;
+}
+
+table.tbl1 tbody
+{
+    /*width: 100%;*/
+    width: 950px;
+}
+
+table.tbl1 tr td,
+table.tbl1 tr th
+{
+    font-size: 14px;
+    border: solid 1px #888;
+    margin: 0;
+    padding: 4px 0;
+}
+
+table.tbl1 tr td
+{
+    text-align: center;    
+    /*background-color: #fff;*/
+    background: #fff;
+    color: #444;
+}
+
+table.tbl1 tbody tr.alt td
+{
+    background-color: #e4ecf7;
+}
+
+table.tbl1 tr:hover td,
+table.tbl1 tbody tr.alt:hover td
+{
+    background-color: #bcd4ec;
+    color: #000;
+}
+
+/* Define column widths
+----------------------------------------------------------*/
+table.tbl1 td.id
+{
+    width: 10px;
+}
+
+table.tbl1 td.city
+{
+    width: 50px;
+}
+
+table.tbl1 td.airline
+{
+    width: 250px;
+}
+table.tbl1 td.flightNumber
+{
+    width: 50px;
+}
+table.tbl1 td.cityState
+{
+    width: 350px;
+}
+table.tbl1 td.dateTime
+{
+    width: 100px;
+}
+
+table.tbl1 td.status
+{
+    width: 150px;
+}
+
+table.tbl1 td.gate
+{
+    width: 50px;
+}
+
+
+
+input.mapShowBtn 
+{
+    float: right;
+   font-family: Arial, Helvetica, sans-serif;
+   font-size: 12px;
+   font-style: italic;
+   text-align: right;
+   /*color: #1315C0;*/
+   /*background-color: #CCCCFF;*/
+   padding: 2px;
+   height: 25px;
+   width: 40px;
+   /*border: 1px solid #000000;*/
+} 
+
+input.mapHideBtn
+{
+   float: right;
+   font-family: "Times New Roman", Times, serif;
+   font-size: 12px;
+   /*font-weight: bold;*/
+   font-style: italic;
+   /*color: #660099;*/
+   /*background-color: #FFCCCC;*/
+   padding: 2px;
+   height: 25px;
+   width: 40px;
+} 
+
+
+
+
+table.tbl2
+{
+    /*width: 100%;*/
+    width: 950px;
+}
+
+
+table.tbl2 thead
+{
+
+    background: #ccffcc;
+    text-align: center;
+    color: #333;
+    /*width: 100%;*/
+    width: 950px;
+}
+
+table.tbl2 tbody
+{
+    /*width: 100%;*/
+    width: 950px;
+}
+
+table.tbl2 tr td,
+table.tbl2 tr th
+{
+    font-size: 14px;
+    border: solid 1px #888;
+    margin: 0;
+    padding: 4px 0;
+}
+
+.cityState
+{
+    font-size: 20px;
+}
+
+table.tbl2 tr td
+{
+    text-align: center;
+    /*background-color: #fff;*/
+    background: #fff;
+    color: #444;
+}
+
+table.tbl2 tbody tr.alt td
+{
+    background-color: #e4ecf7;
+}
+
+table.tbl2 tr:hover td,
+table.tbl2 tbody tr.alt:hover td
+{
+    background-color: #bcd4ec;
+    color: #000;
+}
+
+
+/* Define column widths
+----------------------------------------------------------*/
+
+table.tbl2 td.airline, table.tbl2 th.airline
+{
+    width: 230px;
+}
+table.tbl2 td.flightNumber, table.tbl2 th.flightNumber
+{
+    width: 50px;
+}
+table.tbl2 td.cityState, table.tbl2 th.cityState
+{
+    width: 300px;
+}
+table.tbl2 td.dateTime, table.tbl2 th.dateTime
+{
+    width: 100px;
+}
+
+table.tbl2 td.status, table.tbl2 th.status
+{
+    width: 150px;
+}
+
+table.tbl2 td.gate, table.tbl2 th.gate
+{
+    width: 50px;
+}
+
+table.tbl2 td.baggage, table.tbl2 th.baggage
+{
+    width: 70px;
+}

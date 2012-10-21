@@ -1,43 +1,24 @@
-<style>
-    a:link,
-    a:visited
-    {
-        color: #0398CA;
-    }
+<p>Welcome to my website. You can search flight
+    information of Denver International Airport (DIA) <br></p>
 
-    span#zf-name
-    {
-        color: #91BE3F;
-    }
 
-    div#welcome
-    {
-        color: #FFFFFF;
-        background-image: url(http://framework.zend.com/images/bkg_header.jpg);
-        width:  600px;
-        height: 400px;
-        border: 2px solid #444444;
-        overflow: hidden;
-        text-align: center;
-    }
+<br>
+<p>Current time is
+    Please check the time above to see if the flight database is current.</p>
 
-    div#more-information
-    {
-        background-image: url(http://framework.zend.com/images/bkg_body-bottom.gif);
-        height: 100%;
-    }
-</style>
-<div id="welcome">
-    <h1>Welcome to the <span id="zf-name">Zend Framework!</span></h1>
+<p>I recommend that you update the flight database
+    before starting your search since flight information changes constantly
+</p>
+<br /><br />
 
-    <h3>This is your project's main page</h3>
+<div>
+    <div class="box1 red">
+        <p id="progressbar1"></p>
+        <p class="ajaxPart1"> Click this box <br/><br/>Update Departure Flight Database</p>
+    </div>
 
-    <div id="more-information">
-        <p><img src="http://framework.zend.com/images/PoweredBy_ZF_4LightBG.png" /></p>
-        <p>
-            Helpful Links: <br />
-            <a href="http://framework.zend.com/">Zend Framework Website</a> |
-            <a href="http://framework.zend.com/manual/en/">Zend Framework Manual</a>
-        </p>
+    <div class="box1 green" >
+        <p id="progressbar2"></p>
+        <p class="ajaxPart2">Click this box <br/><br/>Update Arrival Flight Database</p>
     </div>
 </div>
