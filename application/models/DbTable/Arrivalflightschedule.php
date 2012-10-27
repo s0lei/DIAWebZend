@@ -1,14 +1,17 @@
 <?php
 
-class Application_Model_DbTable_Flightarrivalschedule extends Zend_Db_Table_Abstract {
+class Application_Model_DbTable_Arrivalflightschedule extends Zend_Db_Table_Abstract {
 
-    protected $_name = 'flightarrivalschedule';
+    protected $_name = 'arrivalflightschedule';
 
     public function populateArrivalTable() {
+        $this->delete();
+
         $arrivalData = new FlightData_ObtainData();
         $arrivalFlightDataList = $arrivalData->getArrivalDataList();
-
+/* 
         foreach ($arrivalFlightDataList as $arrivalDatum) {
+
             $idNumber = $arrivalDatum->getIdNumber();
             $airline = $arrivalDatum->getAirline();
             $flightNumber = $arrivalDatum->getFlightNumber();
@@ -17,9 +20,22 @@ class Application_Model_DbTable_Flightarrivalschedule extends Zend_Db_Table_Abst
             $status = $arrivalDatum->getStatus();
             $gate = $arrivalDatum->getGate();
             $baggage = $arrivalDatum->getBaggage();
+ * 
+ */
+          
+              $data = array(
+                'idNum' => "1",
+                'Airline' => "1",
+                'FlightNumber' => "1",
+                'CityState' => "1",
+                'Status' => "1",
+                'DateTime' => "1",
+                'Gate' => "1",
+                'Baggage' => "1",
+            );
+            $this->insert($data);
 
-            //mysql_select_db('diaflight');
-
+/*
             $data = array(
                 'idNum' => $idNumber,
                 'Airline' => $airline,
@@ -31,7 +47,9 @@ class Application_Model_DbTable_Flightarrivalschedule extends Zend_Db_Table_Abst
                 'Baggage' => $baggage,
             );
             $this->insert($data);
+ * 
+ */
         }
-    }
+    //}
 
 }
