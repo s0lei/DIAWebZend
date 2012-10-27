@@ -51,7 +51,7 @@ class FlightData_ObtainData {
             $this->stop = strpos($timeSlotWebPage, $this->dataEnd, $this->start);
 
             while (($this->start + 5000) < $this->stop) {
-                $arrivalData1 = new ArrivalFlightData();
+                $arrivalData1 = new FlightData_ArrivalDatum();
                 $idTemp++;
                 $idNumber = (string) $idTemp;
                 $arrivalData1->setIdNumber($idNumber);
