@@ -9,7 +9,7 @@ class Application_Model_DbTable_Arrivalflightschedule extends Zend_Db_Table_Abst
 
         $arrivalData = new FlightData_ObtainData();
         $arrivalFlightDataList = $arrivalData->getArrivalDataList();
-/* 
+
         foreach ($arrivalFlightDataList as $arrivalDatum) {
 
             $idNumber = $arrivalDatum->getIdNumber();
@@ -20,22 +20,7 @@ class Application_Model_DbTable_Arrivalflightschedule extends Zend_Db_Table_Abst
             $status = $arrivalDatum->getStatus();
             $gate = $arrivalDatum->getGate();
             $baggage = $arrivalDatum->getBaggage();
- * 
- */
-          
-              $data = array(
-                'idNum' => "1",
-                'Airline' => "1",
-                'FlightNumber' => "1",
-                'CityState' => "1",
-                'Status' => "1",
-                'DateTime' => "1",
-                'Gate' => "1",
-                'Baggage' => "1",
-            );
-            $this->insert($data);
 
-/*
             $data = array(
                 'idNum' => $idNumber,
                 'Airline' => $airline,
@@ -47,9 +32,7 @@ class Application_Model_DbTable_Arrivalflightschedule extends Zend_Db_Table_Abst
                 'Baggage' => $baggage,
             );
             $this->insert($data);
- * 
- */
         }
-    //}
+    }
 
 }

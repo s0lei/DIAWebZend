@@ -11,7 +11,6 @@
  * @author sian
  */
 class FlightData_ObtainData {
-
     private $arrivalDataList = array();
     private $flightDateTime;
     private $date, $time, $am_pm;
@@ -28,14 +27,18 @@ class FlightData_ObtainData {
         $end = 0;
         $stop = 0;
         $brake = 100;
+
         $this->dataStart = "<table class=\"resultsData\"";
         $this->dataStart = htmlentities($this->dataStart);
-        //echo '<br />dataStart= ' . $this->dataStart;
 
-        $this->dataEnd = "<!-- END:   .tabsOnly -->";
+        $this->dataEnd = "</table> </div>";
         $this->dataEnd = htmlentities($this->dataEnd);
 
         $this->FillArrivalData();
+    }
+
+    public function getArrivalDataList() {
+        return $this->arrivalDataList;
     }
 
     public function FillArrivalData() {
@@ -47,7 +50,6 @@ class FlightData_ObtainData {
             $timeSlotWebPage = $wholeWebContent;
 
             $this->start = strpos($timeSlotWebPage, $this->dataStart);
-
             $this->stop = strpos($timeSlotWebPage, $this->dataEnd, $this->start);
 
             while (($this->start + 5000) < $this->stop) {
@@ -55,6 +57,7 @@ class FlightData_ObtainData {
                 $idTemp++;
                 $idNumber = (string) $idTemp;
                 $arrivalData1->setIdNumber($idNumber);
+
                 $arrivalData1->setAirline($this->FillAirline($timeSlotWebPage));
                 $arrivalData1->setFlightNumber($this->FillFlightNumber($timeSlotWebPage));
 
@@ -65,7 +68,6 @@ class FlightData_ObtainData {
                     $arrivalData1->setGate($this->FillGate($timeSlotWebPage));
                     $arrivalData1->setBaggage($this->FillBaggage($timeSlotWebPage));
                 }
-
                 $this->codeShare = FALSE;
                 $this->arrivalDataList[] = $arrivalData1;
             }
@@ -81,11 +83,11 @@ class FlightData_ObtainData {
         $this->start = strpos($webPage, $tagStart, $this->start);
         $this->end = strpos($webPage, $tagEnd, $this->start);
 
-        $nAirline = substr($webPage, $this->start + strlen($tagStart), $this->end - $this->start - strlen($tagEnd));
+        $nAirline = substr($webPage, $this->start + strlen($tagStart), $this->end - $this->start - strlen($tagEnd) + 1);
 
         $this->brake = $this->start;
-        //echo '<br /><b>Start index: ' . $this->start . '</b>';
         $this->start = $this->end;
+
         return trim($nAirline);
     }
 
@@ -98,21 +100,16 @@ class FlightData_ObtainData {
         $this->start = strpos($webPage, $tagStart, $this->start);
         $this->end = strpos($webPage, $tagEnd, $this->start);
 
-        $nFlightNumber = substr($webPage, $this->start + strlen($tagStart), $this->end - $this->start - strlen($tagEnd));
+        $nFlightNumber = substr($webPage, $this->start + strlen($tagStart), $this->end - $this->start - strlen($tagEnd) + 1);
 
         $codeShareString = substr($webPage, $this->end, 100);
         $test = "</tr>";
         $test = htmlentities($test);
         $shareInt = strpos($codeShareString, $test);
-        //echo '<br /><b> $CodeShareString =  ' . $codeShareString . '</b>';
-        //echo '<br /><br />';
-        //echo '<br /><b> $shareInt =  ' . $shareInt . '</b>';
 
         if ($shareInt != FALSE) {
             $this->codeShare = TRUE;
         }
-
-        //echo '<br /><b>Start index: ' . $this->start . '</b>';
         $this->start = $this->end;
         return trim($nFlightNumber);
     }
@@ -144,8 +141,6 @@ class FlightData_ObtainData {
             $nCityState = substr($webPage, $this->start + strlen($tagStart), $this->end - $this->start - strlen($tagEnd) + 4);
         }
 
-        //echo '<br />City State: ' . $nCityState;
-        //echo '<br /><b>Start index: ' . $this->start . '</b>';
         $this->start = $this->end;
         return trim($nCityState);
     }
@@ -164,7 +159,6 @@ class FlightData_ObtainData {
 
         $nStatus = substr($webPage, $this->start + strlen($tagStart), $this->end - $this->start - strlen($tagEnd));
 
-        //echo '<br /><b>Start index: ' . $this->start . '</b>';
         $this->start = $this->end;
         return trim($nStatus);
     }
@@ -183,7 +177,6 @@ class FlightData_ObtainData {
 
         $nDateTime = substr($webPage, $this->start + strlen($tagStart), $this->end - $this->start - strlen($tagEnd));
 
-        //echo '<br /><b>Start index: ' . $this->start . '</b>';
         $this->start = $this->end;
         return trim($nDateTime);
     }
@@ -199,7 +192,6 @@ class FlightData_ObtainData {
 
         $nGate = substr($webPage, $this->start + strlen($tagStart), $this->end - $this->start - strlen($tagEnd));
 
-        //echo '<br /><b>Start index: ' . $this->start . '</b>';
         $this->start = $this->end;
         $nGate = trim($nGate);
 
@@ -220,7 +212,6 @@ class FlightData_ObtainData {
 
         $nBaggage = substr($webPage, $this->start + strlen($tagStart), $this->end - $this->start - strlen($tagEnd));
 
-        //echo '<br /><b>Start index: ' . $this->start . '</b>';
         $this->start = $this->end;
         $nBaggage = trim($nBaggage);
 
@@ -228,10 +219,6 @@ class FlightData_ObtainData {
             return $nBaggage;
         else
             return "";
-    }
-
-    public function getArrivalDataList() {
-        return $this->arrivalDataList;
     }
 
     public function fillDepartureList() {
@@ -261,7 +248,6 @@ class FlightData_ObtainData {
         $departureData2->setGate("90");
 
         $this->arrivalDataList[] = $departureData2;
-        //$this->departureDataList[] = "dddddddd";
     }
 
     private function GetArriveFlightTextInfo() {
@@ -284,6 +270,7 @@ class FlightData_ObtainData {
             $webContent = "<pre>$webContent</pre>";
             $webContentArray[] = $webContent;
         }
+
         return $webContentArray;
     }
 
