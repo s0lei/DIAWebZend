@@ -36,7 +36,7 @@ function  ArrivalDataUpdate(){
 }
 
 function updatingArrivalData(){
-    $("p.ajaxPart2").load("/DIAWebZend/public/arrivalUpdatingAjax.php");
+    $("p.ajaxPart2").load("/DIAWebZend/public/index/arrivalupdatingajax");
 }
 
 function  DepartureDataUpdate(){
