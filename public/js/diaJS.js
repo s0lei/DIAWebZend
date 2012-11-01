@@ -60,13 +60,13 @@ function useDepartureAjax(){
 
 function useArrivalAjax(){
     $.ajax({
-        url: '/DIAWebZend/public/createArrivalFlightInfo.php',
+        url: '/DIAWebZend/public/index/populatearrivaltable',
         success: updatedArrivalData
     });
 }
 
 function updatedArrivalData(){
-    $("p.ajaxPart2").load("/DIAWebZend/public/arrivalUpdatedAjax.php");
+    $("p.ajaxPart2").load("/DIAWebZend/public/index/arrivalupdatedajax");
     $("#progressbar2").hide(3000);
     //$("#arrivalUpdateTime").load("/DIAWeb/updateArrivalTimeAjax.jsp");
 }

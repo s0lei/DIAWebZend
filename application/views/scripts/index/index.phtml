@@ -3,7 +3,13 @@
 
 
 <br>
-<p>Current time is
+<p>Current time is                 
+    <?php
+    date_default_timezone_set("America/Denver");
+    echo date("g:i A");
+    //echo date("g:i:s A"); 
+    echo "&nbsp;&nbsp;" . date("m/d/Y") . ". ";  
+    ?>
     Please check the time above to see if the flight database is current.</p>
 
 <p>I recommend that you update the flight database
