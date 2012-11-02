@@ -1,7 +1,9 @@
 <div id="menucontainer">
     <ul id="nav">
         <li>
-            <a href="/DIAWeb/homePage">Home</a>
+
+            <a href="<?php echo $this->url(array('controller' => 'index',
+                    'action' => 'index'));?>">Home</a>
             <ul>
             </ul>
         </li>
@@ -29,7 +31,8 @@
             <a href="#">Search Arrival Flight</a>
             <ul>
                 <li>
-                    <a href="/DIAWebZend/public/index/arrival-flight-search">All Flight</a>
+                    <a href="<?php echo $this->url(array('controller' => 'index',
+                    'action' => 'arrivalsearch'));?>">All Flight</a>
                 </li>
                 <li>
                     <a href="/DIAWeb/arrivalFlightSearch">Airline</a>
