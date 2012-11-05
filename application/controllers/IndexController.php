@@ -32,10 +32,16 @@ class IndexController extends Zend_Controller_Action {
     }
 
     public function arrivalsearchAction() {
-        // action body
         $arrivalsearchform = new Application_Form_Flightsearch();
-        $arrivalsearchform->submit->setLabel('Add');
+        $arrivalsearchform->setAction('/DIAWebZend/public/index/')
+                ->setMethod('post');
+        $arrivalsearchform->submit->setLabel('Go');
         $this->view->arrivalsearchform = $arrivalsearchform;
+
+
+        $arrivalsearchform02 = new Application_Form_FlightSearch02();
+        $arrivalsearchform02->submit->setLabel('Add');
+        $this->view->arrivalsearchform02 = $arrivalsearchform02;
     }
 
 }
