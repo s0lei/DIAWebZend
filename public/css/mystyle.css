@@ -5,6 +5,15 @@ div#container
     width: 950px; /*insert the width of your choice here */
 }
 
+div#searchForm
+{
+    margin-top: 30px;
+    /*background: #CBE0E1;*/
+    width: 950px;
+    height: 250px;
+    /*float: right;*/
+}
+
 body 
 { 
     background-image: url(../images/bckground.png);
