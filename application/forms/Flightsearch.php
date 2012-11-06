@@ -3,7 +3,7 @@
 class Application_Form_Flightsearch extends Zend_Form {
 
     public function init() {
-        $this->setName('album');
+        $this->setName('arrivalflight');
         $id = new Zend_Form_Element_Hidden('id');
         $id->addFilter('Int');
 
