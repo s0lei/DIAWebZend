@@ -2,7 +2,7 @@
 
 class IndexController extends Zend_Controller_Action {
 
-    public function init() { 
+    public function init() {
         /* Initialize action controller here */
         $ajaxContext = $this->_helper->getHelper('AjaxContext');
         $ajaxContext->addActionContext('arrivalupdatingajax', 'html')->initContext('html');
@@ -42,24 +42,21 @@ class IndexController extends Zend_Controller_Action {
         $arrivalsearchform02 = new Application_Form_FlightSearch02();
         $arrivalsearchform02->submit->setLabel('Add');
         $this->view->arrivalsearchform02 = $arrivalsearchform02;
-        
-        return $arrivalsearchform;
     }
 
     public function displayarrivalflightAction() {
-        $arrivalsearchform = $this->arrivalsearchAction();
-        
+        $arrivalsearchform = new Application_Form_Flightsearch();
+
         if ($this->getRequest()->isPost()) {
             $formData = $this->getRequest()->getPost();
             if ($arrivalsearchform->isValid($formData)) {
                 //$id = (int) $form->getValue('id');
                 $arrangeOrder = $arrivalsearchform->getValue('arrangeOrder');
-                echo $arrangeOrder;
                 //$title = $form->getValue('title');
                 //$albums = new Application_Model_DbTable_Albums();
                 //$albums->updateAlbum($id, $artist, $title);
                 //$this->_helper->redirector('index');
-            //} else {
+                //} else {
                 //$form->populate($formData);
             }
         } else {
@@ -69,6 +66,8 @@ class IndexController extends Zend_Controller_Action {
             //    $form->populate($albums->getAlbum($id));
             //}
         }
+        $arrivalflightschedule = new Application_Model_DbTable_Arrivalflightschedule();
+        $this->view->arrivalflightschedule = $arrivalflightschedule->fetchAll();
     }
 
 }

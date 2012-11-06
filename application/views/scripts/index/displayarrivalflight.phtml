@@ -1,4 +1,47 @@
-<br /><br />
-<div id="view-content">
-	<p>View script for controller <b>Index</b> and script/action name <b>displayarrivalflight</b></p>
-</div>
+
+<?php
+$this->title = "My Albums";
+$this->headTitle($this->title);
+?>
+
+<table id ='person' class ='tbl2' border='1'>
+    <thead>
+        <tr>
+            <th><b> Airline </b></th>
+            <th><b> Flight </b></th>
+            <th><b> City, State </b></th>
+            <th><b> Date, Time </b></th>
+            <th><b> Status </b></th>
+            <th><b> Gate </b></th>
+            <th><b> Bag Claim </b></th>
+        </tr>
+    </thead>
+    
+<?php foreach ($this->arrivalflightschedule as $singleschedule) : ?>
+    <tbody>
+        <tr>
+            <td class='airline'> <?php echo $this->escape($singleschedule->Airline); ?> </td>
+            <td class='flightNumber'> <?php echo $this->escape($singleschedule->FlightNumber); ?> </td>
+            <td class='cityState'> <?php echo $this->escape($singleschedule->CityState); ?>           
+                <input type='button' class='mapHideBtn' onclick='hideMap()' value='Hide'/>
+                <?php 
+                $p4 = $this->escape($singleschedule->idNum);
+                $p1 = $this->escape($singleschedule->CityState);
+                $p2 = $this->escape($singleschedule->FlightNumber);
+                ?> 
+                <input type='button' class='mapShowBtn' onclick="showMap('<?php echo $p1; ?>', '<?php echo $p4; ?>')" value='Map'/>
+            </td>
+
+            <td class='dateTime'> <?php echo $this->escape($singleschedule->DateTime); ?> </td>
+            <td class='status'> <?php echo $this->escape($singleschedule->Status); ?> </td>
+            <td class='gate'> <?php echo $this->escape($singleschedule->Gate); ?> </td>
+            <td class='baggage'> <?php echo $this->escape($singleschedule->Baggage); ?>  </td>
+        </tr>  
+
+        <?php $p3 = $this->escape($singleschedule->Airline) . "D"; ?>
+        <tr  id= '<?php echo $p3; ?>'  class='mapRow' ><td colspan='7'><div id='<?php echo $p4; ?>' ></div></td></tr> 
+    </tbody>
+<?php endforeach; ?>
+
+</table>
+
