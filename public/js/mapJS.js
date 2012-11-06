@@ -17,7 +17,7 @@ $(document).ready(function(){
 });
 
 //function showMap(mapAddress, locationID){
-function showMap(city, locationID){  
+function showMap(city, locationID){ 
     query = city;
     htmlLocation = locationID;
     trMap = "#" + locationID + "D";

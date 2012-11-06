@@ -23,9 +23,14 @@ $this->headTitle($this->title);
                 <td class='airline'> <?php echo $singleschedule->Airline; ?> </td>
                 <td class='flightNumber'> <?php echo $singleschedule->FlightNumber; ?> </td>
                 <td class='cityState'> 
-                    <?php echo $singleschedule->CityState; ?>           
+                    <?php
+                    $p1 = $singleschedule->idNum;
+                    $p2 = $singleschedule->CityState;
+                    $p3 = $singleschedule->idNum . "D";
+                    echo $p2;
+                    ?>           
                     <input type="button" class="mapHideBtn" onclick="hideMap()" value="Hide"/>
-                    <input type="button" class="mapShowBtn" onclick="showMap('<?php echo $singleschedule->CityState; ?>', '<?php echo $singleschedule->idNum; ?>')" value="Map"/>   
+                    <input type="button" class="mapShowBtn" onclick="showMap('<?php echo $p2; ?>', '<?php echo $p1; ?>')" value="Map"/>   
                 </td>
 
                 <td class='dateTime'> <?php echo $singleschedule->DateTime; ?> </td>
@@ -33,9 +38,9 @@ $this->headTitle($this->title);
                 <td class='gate'> <?php echo $singleschedule->Gate; ?> </td>
                 <td class='baggage'> <?php echo $singleschedule->Baggage; ?>  </td>
             </tr>  
-            <tr id="<?php echo $singleschedule->CityState; ?>', '<?php echo $singleschedule->idNum; ?>" class="mapRow"><td colspan="7"><div id="<?php echo $singleschedule->CityState; ?>', '<?php echo $singleschedule->idNum; ?>" ></div><td></tr>
+            <tr id='<?php echo $p3; ?>' class="mapRow"><td colspan="7"><div id="<?php echo $p1; ?>" ></div><td></tr>
         </tbody>
-    <?php endforeach; ?>
+<?php endforeach; ?>
 
 </table>
 
