@@ -34,5 +34,4 @@ class Application_Model_DbTable_Arrivalflightschedule extends Zend_Db_Table_Abst
             $this->insert($data);
         }
     }
-
 }

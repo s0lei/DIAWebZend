@@ -66,8 +66,15 @@ class IndexController extends Zend_Controller_Action {
             //    $form->populate($albums->getAlbum($id));
             //}
         }
+
+
         $arrivalflightschedule = new Application_Model_DbTable_Arrivalflightschedule();
-        $this->view->arrivalflightschedule = $arrivalflightschedule->fetchAll();
+        $select = $arrivalflightschedule->select()
+                //->where('Airline = ?', 'United Airlines')//;
+                //->order('Status');
+                ->order('Airline');
+        
+        $this->view->arrivalflightschedule = $arrivalflightschedule->fetchall($select);
     }
 
 }
