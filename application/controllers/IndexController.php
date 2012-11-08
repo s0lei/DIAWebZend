@@ -46,33 +46,38 @@ class IndexController extends Zend_Controller_Action {
 
     public function displayarrivalflightAction() {
         $arrivalsearchform = new Application_Form_Flightsearch();
+        $selectedOption = "";
+        $arrangeOrder = "";
 
         if ($this->getRequest()->isPost()) {
             $formData = $this->getRequest()->getPost();
             if ($arrivalsearchform->isValid($formData)) {
-                //$id = (int) $form->getValue('id');
-                $arrangeOrder = $arrivalsearchform->getValue('arrangeOrder');
-                //$title = $form->getValue('title');
-                //$albums = new Application_Model_DbTable_Albums();
-                //$albums->updateAlbum($id, $artist, $title);
-                //$this->_helper->redirector('index');
-                //} else {
-                //$form->populate($formData);
+                $selectedOption = $arrivalsearchform->getValue('arrangeOrder');
             }
         } else {
-            //$id = $this->_getParam('id', 0);
-            //if ($id > 0) {
-            //    $albums = new Application_Model_DbTable_Albums();
-            //    $form->populate($albums->getAlbum($id));
-            //}
         }
-
+        
+        if ($selectedOption=== "airline"){
+            $arrangeOrder = "Airline";
+        }
+        else if ($selectedOption=== "flightNumber"){
+            $arrangeOrder = "FlightNumber";
+        }
+        else if ($selectedOption=== "cityState"){
+            $arrangeOrder = "cityState";
+        }
+        else if ($selectedOption=== "dateTime"){
+            $arrangeOrder = "DateTime";
+        }
+        else if ($selectedOption=== "status"){
+            $arrangeOrder = "Status";
+        }
+        
 
         $arrivalflightschedule = new Application_Model_DbTable_Arrivalflightschedule();
         $select = $arrivalflightschedule->select()
                 //->where('Airline = ?', 'United Airlines')//;
-                //->order('Status');
-                ->order('Airline');
+                ->order($arrangeOrder);
         
         $this->view->arrivalflightschedule = $arrivalflightschedule->fetchall($select);
     }

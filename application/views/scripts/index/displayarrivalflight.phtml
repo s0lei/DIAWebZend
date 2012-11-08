@@ -2,9 +2,10 @@
 <?php
 $this->title = "My Albums";
 $this->headTitle($this->title);
+$rowColor = 1;
 ?>
 
-<table id ='person' class ='tbl2' border='1'>
+<table id ='person' class ='tbl1' border='1'>
     <thead>
         <tr>
             <th><b> Airline </b></th>
@@ -19,7 +20,17 @@ $this->headTitle($this->title);
 
     <?php foreach ($this->arrivalflightschedule as $singleschedule) : ?>
         <tbody>
-            <tr>
+            <?php 
+                  if ($rowColor % 2 === 0){
+                      $trClass = "alt";
+                  }
+                  else {
+                      $trClass = "u";
+                  }
+                  
+                  ++$rowColor;
+            ?>
+            <tr class ="<?php echo $trClass; ?>">
                 <td class='airline'> <?php echo $singleschedule->Airline; ?> </td>
                 <td class='flightNumber'> <?php echo $singleschedule->FlightNumber; ?> </td>
                 <td class='cityState'> 
