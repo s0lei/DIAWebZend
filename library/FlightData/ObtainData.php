@@ -11,6 +11,7 @@
  * @author sian
  */
 class FlightData_ObtainData {
+
     private $arrivalDataList = array();
     private $flightDateTime;
     private $date, $time, $am_pm;
@@ -52,6 +53,11 @@ class FlightData_ObtainData {
             $this->start = strpos($timeSlotWebPage, $this->dataStart);
             $this->stop = strpos($timeSlotWebPage, $this->dataEnd, $this->start);
 
+            $CityState = "";
+            $Status = "";
+            $DateTim = "";
+            $Gate = "";
+            $Baggage = "";
             while (($this->start + 5000) < $this->stop) {
                 $arrivalData1 = new FlightData_ArrivalDatum();
                 $idTemp++;
@@ -62,11 +68,26 @@ class FlightData_ObtainData {
                 $arrivalData1->setFlightNumber($this->FillFlightNumber($timeSlotWebPage));
 
                 if ($this->codeShare === FALSE) {
-                    $arrivalData1->setCityState($this->FillCityState($timeSlotWebPage));
-                    $arrivalData1->setStatus($this->FillStatus($timeSlotWebPage));
-                    $arrivalData1->setDateTime($this->FillDateTime($timeSlotWebPage));
-                    $arrivalData1->setGate($this->FillGate($timeSlotWebPage));
-                    $arrivalData1->setBaggage($this->FillBaggage($timeSlotWebPage));
+                    $CityState = $this->FillCityState($timeSlotWebPage);
+                    $arrivalData1->setCityState($CityState);
+
+                    $Status = $this->FillStatus($timeSlotWebPage);
+                    $arrivalData1->setStatus($Status);
+
+                    $DateTim = $this->FillDateTime($timeSlotWebPage);
+                    $arrivalData1->setDateTime($DateTim);
+
+                    $Gate = $this->FillGate($timeSlotWebPage);
+                    $arrivalData1->setGate($Gate);
+
+                    $Baggage = $this->FillBaggage($timeSlotWebPage);
+                    $arrivalData1->setBaggage($Baggage);
+                } else {
+                    $arrivalData1->setCityState($CityState);
+                    $arrivalData1->setStatus($Status);
+                    $arrivalData1->setDateTime($DateTim);
+                    $arrivalData1->setGate($Gate);
+                    $arrivalData1->setBaggage($Baggage);
                 }
                 $this->codeShare = FALSE;
                 $this->arrivalDataList[] = $arrivalData1;

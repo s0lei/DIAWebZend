@@ -17,7 +17,8 @@ div#searchForm
 body 
 { 
     background-image: url(../images/bckground.png);
-    background-repeat: repeat;
+    background-repeat: repeat-x;
+    width: 100%;
     font: 11px/20px Georgia, 'Times New Roman', Times, serif;
     color:#003399;
     font-size:0.77em;

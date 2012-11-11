@@ -5,7 +5,9 @@ $this->headTitle($this->title);
 $rowColor = 1;
 ?>
 
-<table id ='person' class ='tbl1' border='1'>
+<center><h2 class ="displayFlight" >Arrival flights are arranged in the order of airlines</h2></center>
+
+<table id ='person00' class ='tbl2' border='1' >
     <thead>
         <tr>
             <th><b> Airline </b></th>
@@ -26,32 +28,24 @@ $rowColor = 1;
                   }
                   else {
                       $trClass = "u";
-                  }
-                  
+                  }                  
                   ++$rowColor;
             ?>
-            <tr class ="<?php echo $trClass; ?>">
-                <td class='airline'> <?php echo $singleschedule->Airline; ?> </td>
-                <td class='flightNumber'> <?php echo $singleschedule->FlightNumber; ?> </td>
-                <td class='cityState'> 
-                    <?php
-                    $p1 = $singleschedule->idNum;
-                    $p2 = $singleschedule->CityState;
-                    $p3 = $singleschedule->idNum . "D";
-                    echo $p2;
-                    ?>           
+            <tr class ="<?= $trClass; ?>" >
+                <td class='airline'> <?= $singleschedule->Airline; ?> </td>
+                <td class='flightNumber'> <?= $singleschedule->FlightNumber; ?> </td>
+                <td class='cityState'> <?= $singleschedule->CityState; ?>           
                     <input type="button" class="mapHideBtn" onclick="hideMap()" value="Hide"/>
-                    <input type="button" class="mapShowBtn" onclick="showMap('<?php echo $p2; ?>', '<?php echo $p1; ?>')" value="Map"/>   
+                    <input type="button" class="mapShowBtn" onclick="showMap('<?= $singleschedule->CityState; ?>', '<?= $singleschedule->idNum; ?>')" value="Map"/>   
                 </td>
-
-                <td class='dateTime'> <?php echo $singleschedule->DateTime; ?> </td>
-                <td class='status'> <?php echo $singleschedule->Status; ?> </td>
-                <td class='gate'> <?php echo $singleschedule->Gate; ?> </td>
-                <td class='baggage'> <?php echo $singleschedule->Baggage; ?>  </td>
+                <td class='dateTime'> <?= $singleschedule->DateTime; ?> </td>
+                <td class='status'> <?= $singleschedule->Status; ?> </td>
+                <td class='gate'> <?= $singleschedule->Gate; ?> </td>
+                <td class='baggage'> <?= $singleschedule->Baggage; ?>  </td>
             </tr>  
-            <tr id='<?php echo $p3; ?>' class="mapRow"><td colspan="7"><div id="<?php echo $p1; ?>" ></div><td></tr>
-        </tbody>
-<?php endforeach; ?>
+            <tr id='<?php echo $singleschedule->idNum . "D"; ?>' class="mapRow"><td colspan="7"><div id="<?= $singleschedule->idNum; ?>" ></div></td></tr>
+        </tbody>         
+    <?php endforeach; ?>
 
 </table>
 
