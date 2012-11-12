@@ -37,6 +37,27 @@ class FlightData_ObtainData {
 
         $this->FillArrivalData();
     }
+    
+    public function getDateAmpmTime($flightDateTime) {
+        $flightDateTime = trim($flightDateTime);
+        $separator1 = strpos($flightDateTime, " "); 
+        $timelength = strlen($flightDateTime);
+        
+        $time = substr($flightDateTime, 0, $timelength-2);
+        $am_pm = substr($flightDateTime, $separator1);
+
+        $dateAmpmTime = array();
+        $dateAmpmTime[0] = trim($time);
+        $hourMinute = trim($time);      
+        $commaPos = strpos($flightDateTime, ":");
+        $hour = substr($hourMinute, 0, $commaPos);
+        $minute = substr($hourMinute, $commaPos+1);
+        $dateAmpmTime[1] = $hour;
+        $dateAmpmTime[2] = $minute;
+        $dateAmpmTime[3] = strtolower($am_pm);
+        
+        return $dateAmpmTime;
+    }
 
     public function getArrivalDataList() {
         return $this->arrivalDataList;
@@ -53,11 +74,13 @@ class FlightData_ObtainData {
             $this->start = strpos($timeSlotWebPage, $this->dataStart);
             $this->stop = strpos($timeSlotWebPage, $this->dataEnd, $this->start);
 
+            $dateTimeArray;
             $CityState = "";
             $Status = "";
-            $DateTim = "";
+            //$DateTim = "";
             $Gate = "";
             $Baggage = "";
+            $timeString = "";
             while (($this->start + 5000) < $this->stop) {
                 $arrivalData1 = new FlightData_ArrivalDatum();
                 $idTemp++;
@@ -73,21 +96,32 @@ class FlightData_ObtainData {
 
                     $Status = $this->FillStatus($timeSlotWebPage);
                     $arrivalData1->setStatus($Status);
-
-                    $DateTim = $this->FillDateTime($timeSlotWebPage);
-                    $arrivalData1->setDateTime($DateTim);
+                    
+                    $flightDateTime = $this->FillDateTime($timeSlotWebPage);
+                    $arrivalData1->setDateTime($flightDateTime);
 
                     $Gate = $this->FillGate($timeSlotWebPage);
                     $arrivalData1->setGate($Gate);
 
                     $Baggage = $this->FillBaggage($timeSlotWebPage);
                     $arrivalData1->setBaggage($Baggage);
+                    
+                    $dateTimeArray = $this->getDateAmpmTime($flightDateTime);
+                        $hour = $dateTimeArray[1] + 0;
+                        if ($dateTimeArray[3] === "pm") {
+                            $hour = $hour + 12;
+                        }
+                        $minute = $dateTimeArray[2] + 0;
+                        $ntime = $hour + ($minute / 100);
+                        $timeString = strval($ntime);
+                        $arrivalData1->setTime($timeString);
                 } else {
                     $arrivalData1->setCityState($CityState);
                     $arrivalData1->setStatus($Status);
-                    $arrivalData1->setDateTime($DateTim);
+                    $arrivalData1->setDateTime($flightDateTime);
                     $arrivalData1->setGate($Gate);
                     $arrivalData1->setBaggage($Baggage);
+                    $arrivalData1->setTime($timeString);
                 }
                 $this->codeShare = FALSE;
                 $this->arrivalDataList[] = $arrivalData1;

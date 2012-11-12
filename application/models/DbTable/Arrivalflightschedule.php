@@ -20,6 +20,7 @@ class Application_Model_DbTable_Arrivalflightschedule extends Zend_Db_Table_Abst
             $status = $arrivalDatum->getStatus();
             $gate = $arrivalDatum->getGate();
             $baggage = $arrivalDatum->getBaggage();
+            $time = $arrivalDatum->getTime();
 
             $data = array(
                 'idNum' => $idNumber,
@@ -30,6 +31,7 @@ class Application_Model_DbTable_Arrivalflightschedule extends Zend_Db_Table_Abst
                 'DateTime' => $dateTime,
                 'Gate' => $gate,
                 'Baggage' => $baggage,
+                'Time' => $time,
             );
             $this->insert($data);
         }
