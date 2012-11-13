@@ -1,8 +1,10 @@
 <?php
 
-class IndexController extends Zend_Controller_Action {
+class IndexController extends Zend_Controller_Action
+{
 
-    public function init() {
+    public function init()
+    {
         /* Initialize action controller here */
         $ajaxContext = $this->_helper->getHelper('AjaxContext');
         $ajaxContext->addActionContext('arrivalupdatingajax', 'html')->initContext('html');
@@ -11,11 +13,13 @@ class IndexController extends Zend_Controller_Action {
         $ajaxContext01->addActionContext('arrivalupdatedajax', 'html')->initContext('html');
     }
 
-    public function indexAction() {
+    public function indexAction()
+    {
         // action body
     }
 
-    public function populatearrivaltableAction() {
+    public function populatearrivaltableAction()
+    {
         $arrivalTable = new Application_Model_DbTable_Arrivalflightschedule();
         $arrivalTable->populateArrivalTable();
 
@@ -23,15 +27,18 @@ class IndexController extends Zend_Controller_Action {
         $this->_helper->getHelper('layout')->disableLayout();
     }
 
-    public function arrivalupdatingajaxAction() {
+    public function arrivalupdatingajaxAction()
+    {
         // action body
     }
 
-    public function arrivalupdatedajaxAction() {
+    public function arrivalupdatedajaxAction()
+    {
         // action body
     }
 
-    public function arrivalsearchAction() {
+    public function arrivalsearchAction()
+    {
         $arrivalsearchform = new Application_Form_Flightsearch();
         $arrivalsearchform->setAction('/DIAWebZend/public/index/displayarrivalflight')
                 ->setMethod('post');
@@ -40,11 +47,14 @@ class IndexController extends Zend_Controller_Action {
 
 
         $arrivalsearchform02 = new Application_Form_FlightSearch02();
+        $arrivalsearchform02->setAction('/DIAWebZend/public/index/displayarrivaltimeflight')
+                ->setMethod('post');
         $arrivalsearchform02->submit->setLabel('Add');
         $this->view->arrivalsearchform02 = $arrivalsearchform02;
     }
 
-    public function displayarrivalflightAction() {
+    public function displayarrivalflightAction()
+    {
         $arrivalsearchform = new Application_Form_Flightsearch();
         $selectedOption = "";
         $arrangeOrder = "";
@@ -71,16 +81,24 @@ class IndexController extends Zend_Controller_Action {
         }
         else if ($selectedOption=== "status"){
             $arrangeOrder = "Status";
-        }
-        
+        }        
 
         $arrivalflightschedule = new Application_Model_DbTable_Arrivalflightschedule();
         $select = $arrivalflightschedule->select()
+                //->from($this,array('Airline', 'FlightNumber', 'CityState', 'DateTime', 'Status', 'Gate', 'Baggage'))
                 //->where('Airline = ?', 'United Airlines')//;
                 ->order($arrangeOrder);
         
         $this->view->arrivalflightschedule = $arrivalflightschedule->fetchall($select);
     }
 
+    public function displayarrivaltimeflightAction()
+    {
+        // action body
+    }
+
+
 }
+
+
 
