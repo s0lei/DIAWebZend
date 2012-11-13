@@ -85,7 +85,7 @@ class IndexController extends Zend_Controller_Action
 
         $arrivalflightschedule = new Application_Model_DbTable_Arrivalflightschedule();
         $select = $arrivalflightschedule->select()
-                //->from($this,array('Airline', 'FlightNumber', 'CityState', 'DateTime', 'Status', 'Gate', 'Baggage'))
+                //->from(array('Airline', 'FlightNumber', 'CityState', 'DateTime', 'Status', 'Gate', 'Baggage'))
                 //->where('Airline = ?', 'United Airlines')//;
                 ->order($arrangeOrder);
         

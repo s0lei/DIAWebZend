@@ -3,6 +3,11 @@
 class Application_Model_DbTable_Arrivalflightschedule extends Zend_Db_Table_Abstract {
 
     protected $_name = 'arrivalflightschedule';
+    
+    public function airlineList() {     
+      $select = $this->select()->from($this, array('Airline'))->Order('Airline'); 
+      return $this->fetchAll($select)->toArray();
+    }
 
     public function populateArrivalTable() {
         $this->delete();
