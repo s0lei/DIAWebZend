@@ -42,6 +42,7 @@ class IndexController extends Zend_Controller_Action
         $arrivalsearchform = new Application_Form_Flightsearch();
         $arrivalsearchform->setAction('/DIAWebZend/public/index/displayarrivalflight')
                 ->setMethod('post');
+        $arrivalsearchform->arrangeOrder->setLabel('1. Show all arrival flight in order of');
         $arrivalsearchform->submit->setLabel('Go');
         $this->view->arrivalsearchform = $arrivalsearchform;
 

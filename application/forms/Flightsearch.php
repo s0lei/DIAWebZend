@@ -8,8 +8,7 @@ class Application_Form_Flightsearch extends Zend_Form {
         $id->addFilter('Int');
 
         $arrangeOrder = new Zend_Form_Element_Select('arrangeOrder');
-        $arrangeOrder->setLabel('1. Show all arrival flight in order of')
-                ->setMultiOptions(array('airline' => 'Airline', 
+        $arrangeOrder->setMultiOptions(array('airline' => 'Airline', 
                                         'flightNumber' => 'Flight Number',
                                         'cityState' => 'City & State', 
                                         'dateTime' => 'Date & Time', 

@@ -11,7 +11,8 @@
             <a href="#">Search Departure Flight</a>
             <ul>
                 <li>
-                    <a href="/DIAWeb/departureFlightSearch">All Flight</a>
+                    <a href="<?php echo $this->url(array('controller' => 'departureflight',
+                    'action' => 'index'));?>">All Flight</a>
                 </li>
                 <li>
                     <a href="/DIAWeb/departureFlightSearch">Airline</a>
