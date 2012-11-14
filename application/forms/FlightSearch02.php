@@ -6,8 +6,8 @@ class Application_Form_FlightSearch02 extends Zend_Form {
         $this->setName('album');
         $id = new Zend_Form_Element_Hidden('id');
         $id->addFilter('Int');
-        
-        $arrangeOrder = new Zend_Form_Element_Select('arrangeOrder');
+
+        $airlineList = new Zend_Form_Element_Select('airlineList');
         $arrivalflightschedule = new Application_Model_DbTable_Arrivalflightschedule();
         $result = $arrivalflightschedule->airlineList();
         $options = array();
@@ -15,21 +15,60 @@ class Application_Form_FlightSearch02 extends Zend_Form {
         foreach ($result as $value) {
             $options[$value['Airline']] = $value['Airline'];
         }
-        $arrangeOrder->setLabel('1. Show all arrival flight in order of')
+        $airlineList->setLabel('')
                 ->setRequired(true)->addValidator('NotEmpty', true);
-        $arrangeOrder->setMultiOptions($options);
+        $airlineList->setMultiOptions($options);
 
-        $title = new Zend_Form_Element_Text('title');
-        $title->setLabel('Title')
-                ->setRequired(true)
-                ->addFilter('StripTags')
-                ->addFilter('StringTrim')
-                ->addValidator('NotEmpty');
+        $startTime = new Zend_Form_Element_Select('startTime');
+        $startTime->setLabel('From')
+                ->setMultiOptions(array('0' => '0',
+                    '1' => '1',
+                    '2' => '2',
+                    '3' => '3',
+                    '4' => '4',
+                    '5' => '5',
+                    '6' => '6',
+                    '7' => '7',
+                    '8' => '8',
+                    '9' => '9',
+                    '10' => '10',
+                    '11' => '11',
+                    '12' => '12'))
+                ->setRequired(true)->addValidator('NotEmpty', true);
+        
+        $ampm = new Zend_Form_Element_Select('ampm');
+        $ampm->setLabel('')
+                ->setMultiOptions(array('am' => 'am',
+                    'pm' => 'pm'))
+                ->setRequired(true)->addValidator('NotEmpty', true);
+        
+        $endTime = new Zend_Form_Element_Select('endTime');
+        $endTime->setLabel('To')
+                ->setMultiOptions(array('0' => '0',
+                    '1' => '1',
+                    '2' => '2',
+                    '3' => '3',
+                    '4' => '4',
+                    '5' => '5',
+                    '6' => '6',
+                    '7' => '7',
+                    '8' => '8',
+                    '9' => '9',
+                    '10' => '10',
+                    '11' => '11',
+                    '12' => '12'))
+                ->setRequired(true)->addValidator('NotEmpty', true);
+        
+        $ampmEnd = new Zend_Form_Element_Select('ampmEnd');
+        $ampmEnd->setLabel('')
+                ->setMultiOptions(array('am' => 'am',
+                    'pm' => 'pm'))
+                ->setRequired(true)->addValidator('NotEmpty', true);
 
         $submit = new Zend_Form_Element_Submit('submit');
         $submit->setAttrib('id', 'submitbutton');
 
-        $this->addElements(array($id, $arrangeOrder, $title, $submit));
+        $this->addElements(array($id, $airlineList, $startTime,$ampm, $endTime, $ampmEnd, $submit));
 
         $this->clearDecorators();
         $this->addDecorator('FormElements')
@@ -51,5 +90,6 @@ class Application_Form_FlightSearch02 extends Zend_Form {
                 //array('HtmlTag', array('tag' => 'li', 'class' => 'submit-group')),
         ));
     }
+
 }
 

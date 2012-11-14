@@ -49,7 +49,7 @@ class IndexController extends Zend_Controller_Action
         $arrivalsearchform02 = new Application_Form_FlightSearch02();
         $arrivalsearchform02->setAction('/DIAWebZend/public/index/displayarrivaltimeflight')
                 ->setMethod('post');
-        $arrivalsearchform02->submit->setLabel('Add');
+        $arrivalsearchform02->submit->setLabel('Go');
         $this->view->arrivalsearchform02 = $arrivalsearchform02;
     }
 
@@ -85,7 +85,6 @@ class IndexController extends Zend_Controller_Action
 
         $arrivalflightschedule = new Application_Model_DbTable_Arrivalflightschedule();
         $select = $arrivalflightschedule->select()
-                //->from(array('Airline', 'FlightNumber', 'CityState', 'DateTime', 'Status', 'Gate', 'Baggage'))
                 //->where('Airline = ?', 'United Airlines')//;
                 ->order($arrangeOrder);
         
