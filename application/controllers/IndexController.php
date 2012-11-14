@@ -93,7 +93,24 @@ class IndexController extends Zend_Controller_Action
 
     public function displayarrivaltimeflightAction()
     {
-        // action body
+        $arrivalsearchtimeform = new Application_Form_FlightSearch02();
+        $airline = "";
+        $startTime = "";
+        $ampmStart = "";
+        $endTime = "";
+        $ampmEnd = "";
+
+        if ($this->getRequest()->isPost()) {
+            $formData = $this->getRequest()->getPost();
+            if ($arrivalsearchtimeform->isValid($formData)) {
+                $airline = $arrivalsearchtimeform->getValue('airlineList');
+                $startTime = $arrivalsearchtimeform->getValue('startTime');
+                $ampmStart = $arrivalsearchtimeform->getValue('ampmStart');
+                $endTime = $arrivalsearchtimeform->getValue('endTime');
+                $ampmEnd = $arrivalsearchtimeform->getValue('ampmEnd');
+            }
+        } else {
+        }
     }
 
 

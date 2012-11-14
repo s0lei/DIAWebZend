@@ -36,8 +36,8 @@ class Application_Form_FlightSearch02 extends Zend_Form {
                     '12' => '12'))
                 ->setRequired(true)->addValidator('NotEmpty', true);
         
-        $ampm = new Zend_Form_Element_Select('ampm');
-        $ampm->setLabel('')
+        $ampmStart = new Zend_Form_Element_Select('ampmStart');
+        $ampmStart->setLabel('')
                 ->setMultiOptions(array('am' => 'am',
                     'pm' => 'pm'))
                 ->setRequired(true)->addValidator('NotEmpty', true);
@@ -68,7 +68,7 @@ class Application_Form_FlightSearch02 extends Zend_Form {
         $submit = new Zend_Form_Element_Submit('submit');
         $submit->setAttrib('id', 'submitbutton');
 
-        $this->addElements(array($id, $airlineList, $startTime,$ampm, $endTime, $ampmEnd, $submit));
+        $this->addElements(array($id, $airlineList, $startTime,$ampmStart, $endTime, $ampmEnd, $submit));
 
         $this->clearDecorators();
         $this->addDecorator('FormElements')
