@@ -8,6 +8,9 @@ class IndexController extends Zend_Controller_Action {
 
         $ajaxContext01 = $this->_helper->getHelper('AjaxContext');
         $ajaxContext01->addActionContext('arrivalupdatedajax', 'html')->initContext('html');
+
+        $ajaxContext02 = $this->_helper->getHelper('AjaxContext');
+        $ajaxContext02->addActionContext('arrivaltimeupdateajax', 'html')->initContext('html');
     }
 
     public function indexAction() {
@@ -120,6 +123,11 @@ class IndexController extends Zend_Controller_Action {
         }
 
         $this->view->arrivalflightschedule = $arrivalflightschedule->fetchall($select);
+    }
+
+    public function arrivaltimeupdateajaxAction() {
+        $arrivalupdatetime = new Application_Model_DbTable_Arrivalupdatetime();
+        $arrivalupdatetime->updatetime();
     }
 
 }

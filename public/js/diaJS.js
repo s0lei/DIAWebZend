@@ -68,7 +68,7 @@ function useArrivalAjax(){
 function updatedArrivalData(){
     $("p.ajaxPart2").load("/DIAWebZend/public/index/arrivalupdatedajax");
     $("#progressbar2").hide(3000);
-    //$("#arrivalUpdateTime").load("/DIAWeb/updateArrivalTimeAjax.jsp");
+    $("#arrivalUpdateTime").load("/DIAWebZend/public/index/arrivaltimeupdateajax");
 }
 
 function updatedDepartureData(){

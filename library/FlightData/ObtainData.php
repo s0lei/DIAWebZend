@@ -310,7 +310,7 @@ class FlightData_ObtainData {
 
         $urlArray = array();
         $urlArray[] = "http://www.flydenver.com/flights?ArrivingAirlineCode=&ArrivingFlightNumber=&FlightStatus=IsArriving&SourceAirportCode=&DestinationAirportCode=DEN&SourceAirportCodeValue=&Arrive_FlightRange=12AM-6AM&Arrive_FlightRange_Value=1&TravelDate=0";
-        $urlArray[] = "http://www.flydenver.com/flights?ArrivingAirlineCode=&ArrivingFlightNumber=&FlightStatus=IsArriving&SourceAirportCode=&DestinationAirportCode=DEN&SourceAirportCodeValue=&Arrive_FlightRange=6AM-9AM&Arrive_FlightRange_Value=1&TravelDate=0";
+        //$urlArray[] = "http://www.flydenver.com/flights?ArrivingAirlineCode=&ArrivingFlightNumber=&FlightStatus=IsArriving&SourceAirportCode=&DestinationAirportCode=DEN&SourceAirportCodeValue=&Arrive_FlightRange=6AM-9AM&Arrive_FlightRange_Value=1&TravelDate=0";
 
         foreach ($urlArray as $url) {
             $read = fopen("$url", "r")
