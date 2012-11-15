@@ -8,6 +8,9 @@
     </ul>
 </div>
 
+<div id="arrivalUpdateTime">
+        The arrival database was last updated:
+</div>
 
 
 

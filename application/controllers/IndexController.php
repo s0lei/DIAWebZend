@@ -1,11 +1,8 @@
 <?php
 
-class IndexController extends Zend_Controller_Action
-{
+class IndexController extends Zend_Controller_Action {
 
-    public function init()
-    {
-        /* Initialize action controller here */
+    public function init() {
         $ajaxContext = $this->_helper->getHelper('AjaxContext');
         $ajaxContext->addActionContext('arrivalupdatingajax', 'html')->initContext('html');
 
@@ -13,13 +10,11 @@ class IndexController extends Zend_Controller_Action
         $ajaxContext01->addActionContext('arrivalupdatedajax', 'html')->initContext('html');
     }
 
-    public function indexAction()
-    {
+    public function indexAction() {
         // action body
     }
 
-    public function populatearrivaltableAction()
-    {
+    public function populatearrivaltableAction() {
         $arrivalTable = new Application_Model_DbTable_Arrivalflightschedule();
         $arrivalTable->populateArrivalTable();
 
@@ -27,18 +22,15 @@ class IndexController extends Zend_Controller_Action
         $this->_helper->getHelper('layout')->disableLayout();
     }
 
-    public function arrivalupdatingajaxAction()
-    {
+    public function arrivalupdatingajaxAction() {
         // action body
     }
 
-    public function arrivalupdatedajaxAction()
-    {
+    public function arrivalupdatedajaxAction() {
         // action body
     }
 
-    public function arrivalsearchAction()
-    {
+    public function arrivalsearchAction() {
         $arrivalsearchform = new Application_Form_Flightsearch();
         $arrivalsearchform->setAction('/DIAWebZend/public/index/displayarrivalflight')
                 ->setMethod('post');
@@ -54,8 +46,7 @@ class IndexController extends Zend_Controller_Action
         $this->view->arrivalsearchform02 = $arrivalsearchform02;
     }
 
-    public function displayarrivalflightAction()
-    {
+    public function displayarrivalflightAction() {
         $arrivalsearchform = new Application_Form_Flightsearch();
         $selectedOption = "";
         $arrangeOrder = "";
@@ -66,40 +57,32 @@ class IndexController extends Zend_Controller_Action
                 $selectedOption = $arrivalsearchform->getValue('arrangeOrder');
             }
         } else {
+            
         }
-        
-        if ($selectedOption=== "airline"){
+
+        if ($selectedOption === "airline") {
             $arrangeOrder = "Airline";
-        }
-        else if ($selectedOption=== "flightNumber"){
+        } else if ($selectedOption === "flightNumber") {
             $arrangeOrder = "FlightNumber";
-        }
-        else if ($selectedOption=== "cityState"){
+        } else if ($selectedOption === "cityState") {
             $arrangeOrder = "cityState";
-        }
-        else if ($selectedOption=== "dateTime"){
+        } else if ($selectedOption === "dateTime") {
             $arrangeOrder = "DateTime";
-        }
-        else if ($selectedOption=== "status"){
+        } else if ($selectedOption === "status") {
             $arrangeOrder = "Status";
-        }        
+        }
 
         $arrivalflightschedule = new Application_Model_DbTable_Arrivalflightschedule();
         $select = $arrivalflightschedule->select()
                 //->where('Airline = ?', 'United Airlines')//;
                 ->order($arrangeOrder);
-        
+
         $this->view->arrivalflightschedule = $arrivalflightschedule->fetchall($select);
     }
 
-    public function displayarrivaltimeflightAction()
-    {
+    public function displayarrivaltimeflightAction() {
         $arrivalsearchtimeform = new Application_Form_FlightSearch02();
         $airline = "";
-        $startTime = "";
-        $ampmStart = "";
-        $endTime = "";
-        $ampmEnd = "";
 
         if ($this->getRequest()->isPost()) {
             $formData = $this->getRequest()->getPost();
@@ -111,11 +94,33 @@ class IndexController extends Zend_Controller_Action
                 $ampmEnd = $arrivalsearchtimeform->getValue('ampmEnd');
             }
         } else {
+            
         }
+
+        $startTime = intval($startTime);
+        if ($ampmStart === 'pm')
+            $startTime = $startTime + 12;
+        $endTime = intval($endTime);
+        if ($ampmEnd === 'pm')
+            $$endTime = $endTime + 12;
+
+        $arrivalflightschedule = new Application_Model_DbTable_Arrivalflightschedule();
+        if ($airline === 'Any Airlines') {
+            $select = $arrivalflightschedule->select()
+                    //->where('Airline = ?', 'United Airlines');
+                    ->where('Time >= ?', $startTime)
+                    ->where('Time < ?', $endTime)
+                    ->order('Airline');
+        } else {
+            $select = $arrivalflightschedule->select()
+                    ->where('Airline = ?', $airline)
+                    ->where('Time >= ?', $startTime)
+                    ->where('Time < ?', $endTime)
+                    ->order('Time');
+        }
+
+        $this->view->arrivalflightschedule = $arrivalflightschedule->fetchall($select);
     }
 
-
 }
-
-
 
