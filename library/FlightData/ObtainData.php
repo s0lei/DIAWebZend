@@ -37,25 +37,25 @@ class FlightData_ObtainData {
 
         $this->FillArrivalData();
     }
-    
+
     public function getDateAmpmTime($flightDateTime) {
         $flightDateTime = trim($flightDateTime);
-        $separator1 = strpos($flightDateTime, " "); 
+        $separator1 = strpos($flightDateTime, " ");
         $timelength = strlen($flightDateTime);
-        
-        $time = substr($flightDateTime, 0, $timelength-2);
+
+        $time = substr($flightDateTime, 0, $timelength - 2);
         $am_pm = substr($flightDateTime, $separator1);
 
         $dateAmpmTime = array();
         $dateAmpmTime[0] = trim($time);
-        $hourMinute = trim($time);      
+        $hourMinute = trim($time);
         $commaPos = strpos($flightDateTime, ":");
         $hour = substr($hourMinute, 0, $commaPos);
-        $minute = substr($hourMinute, $commaPos+1);
+        $minute = substr($hourMinute, $commaPos + 1);
         $dateAmpmTime[1] = $hour;
         $dateAmpmTime[2] = $minute;
         $dateAmpmTime[3] = strtolower($am_pm);
-        
+
         return $dateAmpmTime;
     }
 
@@ -96,7 +96,7 @@ class FlightData_ObtainData {
 
                     $Status = $this->FillStatus($timeSlotWebPage);
                     $arrivalData1->setStatus($Status);
-                    
+
                     $flightDateTime = $this->FillDateTime($timeSlotWebPage);
                     $arrivalData1->setDateTime($flightDateTime);
 
@@ -105,16 +105,16 @@ class FlightData_ObtainData {
 
                     $Baggage = $this->FillBaggage($timeSlotWebPage);
                     $arrivalData1->setBaggage($Baggage);
-                    
+
                     $dateTimeArray = $this->getDateAmpmTime($flightDateTime);
-                        $hour = $dateTimeArray[1] + 0;
-                        if ($dateTimeArray[3] === "pm") {
-                            $hour = $hour + 12;
-                        }
-                        $minute = $dateTimeArray[2] + 0;
-                        $ntime = $hour + ($minute / 100);
-                        $timeString = strval($ntime);
-                        $arrivalData1->setTime($timeString);
+                    $hour = $dateTimeArray[1] + 0;
+                    if ($dateTimeArray[3] === "pm") {
+                        $hour = $hour + 12;
+                    }
+                    $minute = $dateTimeArray[2] + 0;
+                    $ntime = $hour + ($minute / 100);
+                    $timeString = strval($ntime);
+                    $arrivalData1->setTime($timeString);
                 } else {
                     $arrivalData1->setCityState($CityState);
                     $arrivalData1->setStatus($Status);
@@ -125,6 +125,35 @@ class FlightData_ObtainData {
                 }
                 $this->codeShare = FALSE;
                 $this->arrivalDataList[] = $arrivalData1;
+            }
+        }
+    }
+    
+    public function fillDepartureData() {
+        $webPageArray = $this->GetDepartureFlightTextInfo();
+        $idTemp = 0;
+        
+        foreach ($webPageArray as $wholeWebContent) {
+            $timeSlotWebPage = "";
+            $timeSlotWebPage = $wholeWebContent;
+
+            $this->start = strpos($timeSlotWebPage, $this->dataStart);
+            $this->stop = strpos($timeSlotWebPage, $this->dataEnd, $this->start);
+            
+            $dateTimeArray;
+            $CityState = "";
+            $Status = "";
+            $Gate = "";
+            $Baggage = "";
+            $timeString = "";
+            while (($this->start + 5000) < $this->stop) {
+                $departureData = new FlightData_DepartureDatum();
+                $idTemp++;
+                $idNumber = (string) $idTemp;
+                $departureData->setIdNumber($idNumber);
+
+                $departureData->setAirline($this->FillAirline($timeSlotWebPage));
+                $departureData->setFlightNumber($this->FillFlightNumber($timeSlotWebPage));
             }
         }
     }
@@ -276,41 +305,36 @@ class FlightData_ObtainData {
             return "";
     }
 
-    public function fillDepartureList() {
-        $departureData1 = new ArrivalFlightData();
-        $departureData2 = new ArrivalFlightData();
-
-        $departureData1->setIdNumber("1");
-        $departureData1->setAirline("3");
-        $departureData1->setFlightNumber("4");
-        $departureData1->setCityState("5");
-        $departureData1->setCity("6");
-        $departureData1->setDateTime("7");
-        $departureData1->setTime("2");
-        $departureData1->setStatus("8");
-        $departureData1->setGate("9");
-
-        $this->arrivalDataList[] = $departureData1;
-
-        $departureData2->setIdNumber("10");
-        $departureData2->setAirline("30");
-        $departureData2->setFlightNumber("40");
-        $departureData2->setCityState("50");
-        $departureData2->setCity("60");
-        $departureData2->setDateTime("70");
-        $departureData2->setTime("20");
-        $departureData2->setStatus("80");
-        $departureData2->setGate("90");
-
-        $this->arrivalDataList[] = $departureData2;
-    }
-
     private function GetArriveFlightTextInfo() {
         $webContentArray = array();
 
         $urlArray = array();
         $urlArray[] = "http://www.flydenver.com/flights?ArrivingAirlineCode=&ArrivingFlightNumber=&FlightStatus=IsArriving&SourceAirportCode=&DestinationAirportCode=DEN&SourceAirportCodeValue=&Arrive_FlightRange=12AM-6AM&Arrive_FlightRange_Value=1&TravelDate=0";
         //$urlArray[] = "http://www.flydenver.com/flights?ArrivingAirlineCode=&ArrivingFlightNumber=&FlightStatus=IsArriving&SourceAirportCode=&DestinationAirportCode=DEN&SourceAirportCodeValue=&Arrive_FlightRange=6AM-9AM&Arrive_FlightRange_Value=1&TravelDate=0";
+
+        foreach ($urlArray as $url) {
+            $read = fopen("$url", "r")
+                    or die("Couldn't open file");
+
+            $webContent = '';
+            while (!feof($read)) {
+                $webContent .= fread($read, 8192);
+            }
+
+            $webContent = htmlentities($webContent);
+            $webContent = "<pre>$webContent</pre>";
+            $webContentArray[] = $webContent;
+        }
+
+        return $webContentArray;
+    }
+
+    private function GetDepartureFlightTextInfo() {
+        $webContentArray = array();
+
+        $urlArray = array();
+        $urlArray[] = "http://www.flydenver.com/flights?DepartingAirlineCode=&DepartingFlightNumber=&FlightStatus=IsDeparting&SourceAirportCode=DEN&DestinationAirportCode=&DestinationAirportCodeValue=&Depart_FlightRange=12AM-6AM&Depart_FlightRange_Value=1&TravelDate=0";
+        $urlArray[] = "http://www.flydenver.com/flights?DepartingAirlineCode=&DepartingFlightNumber=&FlightStatus=IsDeparting&SourceAirportCode=DEN&DestinationAirportCode=&DestinationAirportCodeValue=&Depart_FlightRange=6AM-8AM&Depart_FlightRange_Value=1&TravelDate=0";
 
         foreach ($urlArray as $url) {
             $read = fopen("$url", "r")

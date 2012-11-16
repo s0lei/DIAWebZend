@@ -11,7 +11,6 @@
  * @author sian
  */
 class FlightData_ArrivalDatum {
-
     private $idNumber;
     private $airline;
     private $flightNumber;

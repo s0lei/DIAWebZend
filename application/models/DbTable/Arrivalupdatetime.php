@@ -7,6 +7,7 @@ class Application_Model_DbTable_Arrivalupdatetime extends Zend_Db_Table_Abstract
     public function updatetime() {
         $this->delete();
         $id = 1;
+
         $currentTime = new Zend_Db_Expr('NOW()');
         $data = array('id' => $id,
             'updatedtime' => $currentTime,);
@@ -19,7 +20,8 @@ class Application_Model_DbTable_Arrivalupdatetime extends Zend_Db_Table_Abstract
         if (!$row) {
             throw new Exception("Could not find row $id");
         }
-        return $row->toArray();        
+        return $row->toArray();
     }
+
 }
 

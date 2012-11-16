@@ -11,9 +11,11 @@
 <div id="arrivalUpdateTime">
     The arrival database was last updated:
     <?php
-        $arrivalflihgtupdatetime = new Application_Model_DbTable_Arrivalupdatetime();
-        $result = $arrivalflihgtupdatetime->updatetimeobtain();
-        echo $result[updatedtime];
+    $arrivalflihgtupdatetime = new Application_Model_DbTable_Arrivalupdatetime();
+    $result = $arrivalflihgtupdatetime->updatetimeobtain();
+    //$date = new Zend_Date($result[updatedtime], 'MM-DD-YYYY HH:mm');
+
+    echo $result[updatedtime];        
     ?>
 </div>
 
