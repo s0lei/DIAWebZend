@@ -13,6 +13,7 @@ class Application_Model_DbTable_Arrivalflightschedule extends Zend_Db_Table_Abst
         $this->delete();
 
         $arrivalData = new FlightData_ObtainData();
+        $arrivalData->FillArrivalData();
         $arrivalFlightDataList = $arrivalData->getArrivalDataList();
 
         foreach ($arrivalFlightDataList as $arrivalDatum) {

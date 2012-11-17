@@ -14,6 +14,11 @@ div#searchForm
     /*float: right;*/
 }
 
+.weatherImage
+{    
+    
+}
+
 body 
 { 
     background-image: url(../images/bckground.png);

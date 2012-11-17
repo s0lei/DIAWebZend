@@ -8,16 +8,29 @@
     </ul>
 </div>
 
-<div id="arrivalUpdateTime">
-    The arrival database was last updated:
-    <?php
-    $arrivalflihgtupdatetime = new Application_Model_DbTable_Arrivalupdatetime();
-    $result = $arrivalflihgtupdatetime->updatetimeobtain();
+<div id="departureUpdateTime">   
+    The departure database was last updated:
+     <?php
+    $departureflihgtupdatetime = new Application_Model_DbTable_Arrivalupdatetime();
+    $departureresult = $departureflihgtupdatetime->updatedeparturetimeobtain();
     //$date = new Zend_Date($result[updatedtime], 'MM-DD-YYYY HH:mm');
-
-    echo $result[updatedtime];        
+    
+    echo $departureresult[updatedtime];        
     ?>
 </div>
+
+<div id="arrivalUpdateTime">
+    The arrival database was last updated:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     <?php
+    $arrivalflihgtupdatetime = new Application_Model_DbTable_Arrivalupdatetime();
+    $arrivalresult = $arrivalflihgtupdatetime->updatearrivaltimeobtain();
+    //$date = new Zend_Date($result[updatedtime], 'MM-DD-YYYY HH:mm');
+    
+    echo  $arrivalresult[updatedtime];       
+    ?> 
+</div>
+
+
 
 
 

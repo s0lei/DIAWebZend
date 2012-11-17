@@ -18,7 +18,7 @@ class IndexController extends Zend_Controller_Action {
     }
 
     public function populatearrivaltableAction() {
-        $arrivalTable = new Application_Model_DbTable_Arrivalflightschedule();
+        $arrivalTable = new Application_Model_DbTable_Arrivalflightschedule();        
         $arrivalTable->populateArrivalTable();
 
         $this->_helper->viewRenderer->setNoRender();
@@ -59,8 +59,7 @@ class IndexController extends Zend_Controller_Action {
             if ($arrivalsearchform->isValid($formData)) {
                 $selectedOption = $arrivalsearchform->getValue('arrangeOrder');
             }
-        } else {
-            
+        } else {           
         }
 
         if ($selectedOption === "airline") {
@@ -127,7 +126,7 @@ class IndexController extends Zend_Controller_Action {
 
     public function arrivaltimeupdateajaxAction() {
         $arrivalupdatetime = new Application_Model_DbTable_Arrivalupdatetime();
-        $arrivalupdatetime->updatetime();
+        $arrivalupdatetime->updatearrivaltime();
     }
 
 }

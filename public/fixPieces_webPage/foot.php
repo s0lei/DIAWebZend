@@ -1,1 +1,1 @@
-<center> Copyright© 2011 </center>
+<center> Copyright© 2012 </center>

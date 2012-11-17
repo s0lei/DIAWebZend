@@ -48,14 +48,21 @@ function  DepartureDataUpdate(){
 }
 
 function updatingDepartureData(){
-    $("p.ajaxPart1").load("/DIAWebZend/public/departureUpdatingAjax.jsp");
+    $("p.ajaxPart1").load("/DIAWebZend/public/departureflight/departureupdatingajax");
 }
 
 function useDepartureAjax(){
     $.ajax({
-        url: '/DIAWeb/DepartureFlightUpdatedAjax',
+        url: '/DIAWebZend/public/departureflight/populatedeparturetable',
         success: updatedDepartureData
     });
+}
+
+function updatedDepartureData(){
+    $("p.ajaxPart1").load("/DIAWebZend/public/departureflight/departureupdatedajax");
+    $("#progressbar1").hide(3000);
+    //$("#arrivalUpdateTime").load("/DIAWebZend/public/index/arrivaltimeupdateajax");
+    $("#departureUpdateTime").load("/DIAWebZend/public/departureflight/departuretimeupdateajax");
 }
 
 function useArrivalAjax(){
@@ -69,13 +76,9 @@ function updatedArrivalData(){
     $("p.ajaxPart2").load("/DIAWebZend/public/index/arrivalupdatedajax");
     $("#progressbar2").hide(3000);
     $("#arrivalUpdateTime").load("/DIAWebZend/public/index/arrivaltimeupdateajax");
+    //$("#departureUpdateTime").load("/DIAWebZend/public/departureflight/departuretimeupdateajax");
 }
 
-function updatedDepartureData(){
-    $("p.ajaxPart1").load("/DIAWeb/departureUpdatedAjax.jsp");
-    $("#progressbar1").hide(3000);
-    $("#departureUpdateTime").load("/DIAWeb/updateDepartureTimeAjax.jsp");
-}
 
 function startDepartureProgress()
 {
