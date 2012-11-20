@@ -13,10 +13,29 @@ function toUpdateFlightData(){
         width: '950px',
         height: '400px'
     });
+    
+    $("h1#timesubmit").click(displayflightsearchresult);
+    
     $("div.green").click(ArrivalDataUpdate);
     $("div.red").click(DepartureDataUpdate);
-    
+       
     $("div.box1").mouseover(testColor).mouseout(testColor1);
+    
+}
+function displayflightsearchresult(){
+    var field_a = $("#airline").val(); 
+    var field_b = $("#flight").val();  
+    var data = { 'airline': field_a , 'flight': field_b};
+    
+    $.ajax({
+        type: 'POST',
+        data: data,
+        //data: "airline="+field_a + "&flight="+field_b,
+        url: '/DIAWebZend/public/departureflight/displaydepartureairlineflightnumberflight',
+        success: function(data){
+            $("div#displayairlineandtimeresult").html(data);
+        }
+    });
 }
 
 function testColor(){

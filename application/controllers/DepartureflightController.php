@@ -13,6 +13,9 @@ class DepartureflightController extends Zend_Controller_Action
 
         $ajaxContext02 = $this->_helper->getHelper('AjaxContext');
         $ajaxContext02->addActionContext('departuretimeupdateajax', 'html')->initContext('html');
+        
+        $ajaxContext03 = $this->_helper->getHelper('AjaxContext');
+        $ajaxContext03->addActionContext('displaydepartureairlineflightnumberflight', 'html')->initContext('html');
     }
 
     public function indexAction()
@@ -187,8 +190,8 @@ class DepartureflightController extends Zend_Controller_Action
     public function airlineflightnumberAction()
     {
         $departureairlineflightnumberform = new Application_Form_Departureairlineflightnumberform();
-        $departureairlineflightnumberform->setAction('/DIAWebZend/public/departureflight/displaydepartureairlineflightnumberflight')
-                ->setMethod('post');
+        //$departureairlineflightnumberform->setAction('/DIAWebZend/public/departureflight/displaydepartureairlineflightnumberflight')
+        //        ->setMethod('post');
         $departureairlineflightnumberform->submit->setLabel('Go');
         $this->view->departureairlineflightnumberform = $departureairlineflightnumberform;
     }
@@ -207,25 +210,24 @@ class DepartureflightController extends Zend_Controller_Action
             }
         } else {            
         }
+        
+        $airline = $_POST['airline'];
+        $flight = $_POST['flight'];
 
         $departureflightschedule = new Application_Model_DbTable_Departureflightschedule();
          if ($airline === 'Any Airlines') {
             $select = $departureflightschedule->select()
-                    //->where('Airline = ?', $airline)
-                    //->where('FlightNumber = ?', "5494")
-                    ->where('FlightNumber = ?', $flightnumber)
+                    ->where('FlightNumber = ?', $flight)
                     ->order('Airline');
         } else {
             $select = $departureflightschedule->select()
                     ->where('Airline = ?', $airline)
-                    ->where('FlightNumber = ?', $flightnumber)
+                    ->where('FlightNumber = ?', $flight)
                     ->order('Airline');
-        }       
-
+        } 
+        
         $this->view->departureflightschedule = $departureflightschedule->fetchall($select);
     }
-
-
 }
 
 

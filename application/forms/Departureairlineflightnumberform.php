@@ -29,7 +29,7 @@ class Application_Form_Departureairlineflightnumberform extends Zend_Form {
         $submit = new Zend_Form_Element_Submit('submit');
         $submit->setAttrib('id', 'submitbutton');
 
-        $this->addElements(array($id, $airlineList, $flightnumber, $submit));
+        $this->addElements(array($id, $airlineList, $flightnumber, $title, $submit));
 
         $this->clearDecorators();
         $this->addDecorator('FormElements')
@@ -42,13 +42,13 @@ class Application_Form_Departureairlineflightnumberform extends Zend_Form {
             array('Description'),
             array('Label', array('separator' => ' ')),
                 //array('HtmlTag', array('tag' => 'li', 'class' => 'element-group')),
-        ));
-
+        )); 
+        
         // buttons do not need labels
         $submit->setDecorators(array(
             array('ViewHelper'),
             array('Description'),
-                //array('HtmlTag', array('tag' => 'li', 'class' => 'submit-group')),
+            //array('HtmlTag', array('tag' => 'div', 'id' => 'timesubmit')),
         ));
     }
 
