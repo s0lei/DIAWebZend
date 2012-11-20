@@ -5,7 +5,7 @@ class Application_Form_Departureflightsearchtime extends Zend_Form
 
     public function init()
     {
-         $this->setName('album');
+        $this->setName('album');
         $id = new Zend_Form_Element_Hidden('id');
         $id->addFilter('Int');
 

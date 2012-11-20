@@ -8,6 +8,11 @@ class Application_Model_DbTable_Departureflightschedule extends Zend_Db_Table_Ab
         $select = $this->select()->from($this, array('Airline'))->Order('Airline');
         return $this->fetchAll($select)->toArray();
     }
+    
+    public function cityList() {
+        $select = $this->select()->from($this, array('CityState'))->Order('CityState');
+        return $this->fetchAll($select)->toArray();
+    }
 
     public function populateDepartureTable() {
         $this->delete();

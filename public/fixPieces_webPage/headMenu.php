@@ -16,16 +16,15 @@
                 </li>
                 <li>
                     <a href="<?php echo $this->url(array('controller' => 'departureflight',
-                    'action' => 'index'));?>">All Flight</a>
+                    'action' => 'airlineandtime'));?>">Airline + Time</a>
                 </li>
                 <li>
-                    <a href="/DIAWeb/departureFlightSearch">Airline + Time</a>
+                    <a href="<?php echo $this->url(array('controller' => 'departureflight',
+                    'action' => 'airlineandcity'));?>">Airline + City</a>
                 </li>
                 <li>
-                    <a href="/DIAWeb/departureFlightSearch">Airline + City</a>
-                </li>
-                <li>
-                    <a href="/DIAWeb/departureFlightSearch">Airline + Flight #</a>
+                    <a href="<?php echo $this->url(array('controller' => 'departureflight',
+                    'action' => 'airlineflightnumber'));?>">Airline + Flight #</a>
                 </li>
             </ul>
         </li>

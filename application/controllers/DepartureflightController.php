@@ -7,10 +7,10 @@ class DepartureflightController extends Zend_Controller_Action
     {
         $ajaxContext = $this->_helper->getHelper('AjaxContext');
         $ajaxContext->addActionContext('departureupdatingajax', 'html')->initContext('html');
-        
+
         $ajaxContext01 = $this->_helper->getHelper('AjaxContext');
         $ajaxContext01->addActionContext('departureupdatedajax', 'html')->initContext('html');
-        
+
         $ajaxContext02 = $this->_helper->getHelper('AjaxContext');
         $ajaxContext02->addActionContext('departuretimeupdateajax', 'html')->initContext('html');
     }
@@ -33,7 +33,7 @@ class DepartureflightController extends Zend_Controller_Action
 
     public function populatedeparturetableAction()
     {
-        $departureTable = new Application_Model_DbTable_departureflightschedule();        
+        $departureTable = new Application_Model_DbTable_departureflightschedule();
         $departureTable->populateDepartureTable();
 
         $this->_helper->viewRenderer->setNoRender();
@@ -61,7 +61,8 @@ class DepartureflightController extends Zend_Controller_Action
             if ($departuresearchform->isValid($formData)) {
                 $selectedOption = $departuresearchform->getValue('arrangeOrder');
             }
-        } else {           
+        } else {
+            
         }
 
         if ($selectedOption === "airline") {
@@ -133,16 +134,99 @@ class DepartureflightController extends Zend_Controller_Action
         $departureupdatetime->updatedeparturetime();
     }
 
+    public function airlineandtimeAction()
+    {
+        $departuresearchtimeform = new Application_Form_Departureflightsearchtime();
+        $departuresearchtimeform->setAction('/DIAWebZend/public/departureflight/displaydeparturetimeflight')
+                ->setMethod('post');
+        $departuresearchtimeform->submit->setLabel('Go');
+        $this->view->departuresearchtimeform = $departuresearchtimeform;
+    }
+
+    public function airlineandcityAction()
+    {
+        $departureairlinecityform = new Application_Form_Departureairlinecityform();
+        $departureairlinecityform->setAction('/DIAWebZend/public/departureflight/displaydepartureairlineandcityflight')
+                ->setMethod('post');
+        $departureairlinecityform->submit->setLabel('Go');
+        $this->view->departureairlinecityform = $departureairlinecityform;
+    }
+
+    public function displaydepartureairlineandcityflightAction()
+    {
+        $departuresearchtimeform = new Application_Form_Departureairlinecityform();
+        $airline = "";
+        $city = "";
+
+        if ($this->getRequest()->isPost()) {
+            $formData = $this->getRequest()->getPost();
+            if ($departuresearchtimeform->isValid($formData)) {
+                $airline = $departuresearchtimeform->getValue('airlineList');
+                $city = $departuresearchtimeform->getValue('cityList');
+            }
+        } else {
+            
+        }
+
+        $departureflightschedule = new Application_Model_DbTable_Departureflightschedule();
+         if ($airline === 'Any Airlines') {
+            $select = $departureflightschedule->select()
+                    //->where('Airline = ?', 'United Airlines');
+                    ->where('CityState = ?', $city)
+                    ->order('Airline');
+        } else {
+            $select = $departureflightschedule->select()
+                    ->where('Airline = ?', $airline)
+                    ->where('CityState = ?', $city)
+                    ->order('Airline');
+        }
+
+        $this->view->departureflightschedule = $departureflightschedule->fetchall($select);
+    }
+
+    public function airlineflightnumberAction()
+    {
+        $departureairlineflightnumberform = new Application_Form_Departureairlineflightnumberform();
+        $departureairlineflightnumberform->setAction('/DIAWebZend/public/departureflight/displaydepartureairlineflightnumberflight')
+                ->setMethod('post');
+        $departureairlineflightnumberform->submit->setLabel('Go');
+        $this->view->departureairlineflightnumberform = $departureairlineflightnumberform;
+    }
+
+    public function displaydepartureairlineflightnumberflightAction()
+    {        
+        $departuresearchtimeform = new Application_Form_Departureairlineflightnumberform();
+        $airline = "";
+        $flightnumber = "";
+
+        if ($this->getRequest()->isPost()) {
+            $formData = $this->getRequest()->getPost();
+            if ($departuresearchtimeform->isValid($formData)) {
+                $airline = $departuresearchtimeform->getValue('airlineList');
+                $flightnumber = $departuresearchtimeform->getValue('flightnumber');
+            }
+        } else {            
+        }
+
+        $departureflightschedule = new Application_Model_DbTable_Departureflightschedule();
+         if ($airline === 'Any Airlines') {
+            $select = $departureflightschedule->select()
+                    //->where('Airline = ?', $airline)
+                    //->where('FlightNumber = ?', "5494")
+                    ->where('FlightNumber = ?', $flightnumber)
+                    ->order('Airline');
+        } else {
+            $select = $departureflightschedule->select()
+                    ->where('Airline = ?', $airline)
+                    ->where('FlightNumber = ?', $flightnumber)
+                    ->order('Airline');
+        }       
+
+        $this->view->departureflightschedule = $departureflightschedule->fetchall($select);
+    }
+
 
 }
-
-
-
-
-
-
-
-
 
 
 

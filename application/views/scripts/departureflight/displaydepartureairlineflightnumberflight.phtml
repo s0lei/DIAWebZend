@@ -1,0 +1,46 @@
+<?php
+$this->title = "My Albums";
+$this->headTitle($this->title);
+$rowColor = 1;
+?>
+
+<center><h2 class ="displayFlight" >Search results of flight number and airline</h2></center>
+
+<table id ='person00' class ='tbl1' border='1' >
+    <thead>
+        <tr>
+            <th><b> Airline </b></th>
+            <th><b> Flight </b></th>
+            <th><b> City, State </b></th>
+            <th><b> Date, Time </b></th>
+            <th><b> Status </b></th>
+            <th><b> Gate </b></th>
+        </tr>
+    </thead>
+
+    <?php foreach ($this->departureflightschedule as $singleschedule) : ?>
+        <tbody>
+            <?php 
+                  if ($rowColor % 2 === 0){
+                      $trClass = "alt";
+                  }
+                  else {
+                      $trClass = "u";
+                  }                  
+                  ++$rowColor;
+            ?>
+            <tr class ="<?= $trClass; ?>" >
+                <td class='airline'> <?= $singleschedule->Airline; ?> </td>
+                <td class='flightNumber'> <?= $singleschedule->FlightNumber; ?> </td>
+                <td class='cityState'> <?= $singleschedule->CityState; ?>           
+                    <input type="button" class="mapHideBtn" onclick="hideMap()" value="Hide"/>
+                    <input type="button" class="mapShowBtn" onclick="showMap('<?= $singleschedule->CityState; ?>', '<?= $singleschedule->idNum; ?>')" value="Map"/>   
+                </td>
+                <td class='dateTime'> <?= $singleschedule->DateTime; ?> </td>
+                <td class='status'> <?= $singleschedule->Status; ?> </td>
+                <td class='gate'> <?= $singleschedule->Gate; ?> </td>
+            </tr>  
+            <tr id='<?php echo $singleschedule->idNum . "D"; ?>' class="mapRow"><td colspan="7"><div id="<?= $singleschedule->idNum; ?>" ></div></td></tr>
+        </tbody>         
+    <?php endforeach; ?>
+</table>
