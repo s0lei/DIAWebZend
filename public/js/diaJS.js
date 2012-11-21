@@ -14,7 +14,7 @@ function toUpdateFlightData(){
         height: '400px'
     });
     
-    $("h1#timesubmit").click(displayflightsearchresult);
+    $("button#airlinetimeBtn").click(displayflightsearchresult);
     
     $("div.green").click(ArrivalDataUpdate);
     $("div.red").click(DepartureDataUpdate);

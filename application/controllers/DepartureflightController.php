@@ -189,11 +189,11 @@ class DepartureflightController extends Zend_Controller_Action
 
     public function airlineflightnumberAction()
     {
-        $departureairlineflightnumberform = new Application_Form_Departureairlineflightnumberform();
+        //$departureairlineflightnumberform = new Application_Form_Departureairlineflightnumberform();
         //$departureairlineflightnumberform->setAction('/DIAWebZend/public/departureflight/displaydepartureairlineflightnumberflight')
         //        ->setMethod('post');
-        $departureairlineflightnumberform->submit->setLabel('Go');
-        $this->view->departureairlineflightnumberform = $departureairlineflightnumberform;
+        //$departureairlineflightnumberform->submit->setLabel('Go');
+        //$this->view->departureairlineflightnumberform = $departureairlineflightnumberform;
     }
 
     public function displaydepartureairlineflightnumberflightAction()
