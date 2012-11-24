@@ -12,25 +12,26 @@ echo $this->doctype();
     <head>
         <?php echo $this->headMeta(); ?>
         <?php echo $this->headTitle(); ?>
-                
-        <link rel="stylesheet" type="text/css" media="screen" href="<?= $this->baseUrl(); ?>/css/jquery-ui.css" />
-        <link rel="stylesheet" type="text/css" media="screen" href="<?= $this->baseUrl(); ?>/css/menustyle.css" />
-        <link rel="stylesheet" type="text/css" media="screen" href="<?= $this->baseUrl(); ?>/css/mystyle.css" />
-        <link rel="stylesheet" type="text/css" media="screen" href="<?= $this->baseUrl(); ?>/css/panning-slideshow.css" />
-        <link rel="stylesheet" type="text/css" media="screen" href="<?= $this->baseUrl(); ?>/css/tablestyle.css" />
-        <link rel="stylesheet" type="text/css" media="screen" href="<?= $this->baseUrl(); ?>/css/jquery.autocomplete.css" />
         
-        <?php echo $this->headScript()->appendFile($this->baseUrl() . '/js/jquery-1.6.2.min.js'); ?>                
+        <?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/css/jquery.autocomplete.css'); ?>
+        <?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/css/jquery-ui.css'); ?>
+        <?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/css/menustyle.css'); ?>
+        <?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/css/mystyle.css'); ?>
+        <?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/css/panning-slideshow.css'); ?>
+        <?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/css/tablestyle.css'); ?>
+               
+        <?php echo $this->headScript()->appendFile($this->baseUrl() . '/js/jquery-1.6.2.min.js'); ?>         
         <?php echo $this->headScript()->appendFile($this->baseUrl() . '/js/jquery-ui.min.js'); ?>
         <?php echo $this->headScript()->appendFile($this->baseUrl() . '/js/jquery.easing.1.3.js'); ?>
         <?php echo $this->headScript()->appendFile($this->baseUrl() . '/js/jquery-ui-1.8.5.custom.js'); ?>
         <?php echo $this->headScript()->appendFile('http://maps.google.com/maps/api/js?sensor=false'); ?>
-        <?php echo $this->headScript()->appendFile($this->baseUrl() . '/js/tablePlugin.js'); ?>
-        <?php echo $this->headScript()->appendFile($this->baseUrl() . '/js/diaJS.js'); ?>
-        <?php echo $this->headScript()->appendFile($this->baseUrl() . '/js/dropDownMenu.js'); ?> 
         
         <?php echo $this->headScript()->appendFile($this->baseUrl() . '/js/autofillJS.js'); ?>
         <?php echo $this->headScript()->appendFile($this->baseUrl() . '/js/jquery.autocomplete.js'); ?>
+        
+        <?php echo $this->headScript()->appendFile($this->baseUrl() . '/js/tablePlugin.js'); ?>
+        <?php echo $this->headScript()->appendFile($this->baseUrl() . '/js/diaJS.js'); ?>
+        <?php echo $this->headScript()->appendFile($this->baseUrl() . '/js/dropDownMenu.js'); ?>               
         <?php echo $this->headScript()->appendFile($this->baseUrl() . '/js/mapJS.js'); ?>                        
         <?php echo $this->headScript()->appendFile($this->baseUrl() . '/js/jquery.timer.js'); ?>
         <?php echo $this->headScript()->appendFile($this->baseUrl() . '/js/image-rotator.js'); ?>

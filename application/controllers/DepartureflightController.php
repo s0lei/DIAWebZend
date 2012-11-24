@@ -16,6 +16,9 @@ class DepartureflightController extends Zend_Controller_Action
         
         $ajaxContext03 = $this->_helper->getHelper('AjaxContext');
         $ajaxContext03->addActionContext('displaydepartureairlineflightnumberflight', 'html')->initContext('html');
+        
+        $ajaxContext04 = $this->_helper->getHelper('AjaxContext');
+        $ajaxContext04->addActionContext('displaydepartureairlineandcityflight', 'html')->initContext('html');
     }
 
     public function indexAction()
@@ -148,33 +151,21 @@ class DepartureflightController extends Zend_Controller_Action
 
     public function airlineandcityAction()
     {
-        $departureairlinecityform = new Application_Form_Departureairlinecityform();
-        $departureairlinecityform->setAction('/DIAWebZend/public/departureflight/displaydepartureairlineandcityflight')
-                ->setMethod('post');
-        $departureairlinecityform->submit->setLabel('Go');
-        $this->view->departureairlinecityform = $departureairlinecityform;
+        //$departureairlinecityform = new Application_Form_Departureairlinecityform();
+        //$departureairlinecityform->setAction('/DIAWebZend/public/departureflight/displaydepartureairlineandcityflight')
+        //        ->setMethod('post');
+        //$departureairlinecityform->submit->setLabel('Go');
+        //$this->view->departureairlinecityform = $departureairlinecityform;
     }
 
     public function displaydepartureairlineandcityflightAction()
     {
-        $departuresearchtimeform = new Application_Form_Departureairlinecityform();
-        $airline = "";
-        $city = "";
-
-        if ($this->getRequest()->isPost()) {
-            $formData = $this->getRequest()->getPost();
-            if ($departuresearchtimeform->isValid($formData)) {
-                $airline = $departuresearchtimeform->getValue('airlineList');
-                $city = $departuresearchtimeform->getValue('cityList');
-            }
-        } else {
-            
-        }
+        $airline = $_POST['airline'];
+        $city = $_POST['city'];
 
         $departureflightschedule = new Application_Model_DbTable_Departureflightschedule();
          if ($airline === 'Any Airlines') {
             $select = $departureflightschedule->select()
-                    //->where('Airline = ?', 'United Airlines');
                     ->where('CityState = ?', $city)
                     ->order('Airline');
         } else {
@@ -182,35 +173,18 @@ class DepartureflightController extends Zend_Controller_Action
                     ->where('Airline = ?', $airline)
                     ->where('CityState = ?', $city)
                     ->order('Airline');
-        }
-
+        } 
+        
         $this->view->departureflightschedule = $departureflightschedule->fetchall($select);
     }
 
     public function airlineflightnumberAction()
     {
-        //$departureairlineflightnumberform = new Application_Form_Departureairlineflightnumberform();
-        //$departureairlineflightnumberform->setAction('/DIAWebZend/public/departureflight/displaydepartureairlineflightnumberflight')
-        //        ->setMethod('post');
-        //$departureairlineflightnumberform->submit->setLabel('Go');
-        //$this->view->departureairlineflightnumberform = $departureairlineflightnumberform;
+        
     }
 
     public function displaydepartureairlineflightnumberflightAction()
     {        
-        $departuresearchtimeform = new Application_Form_Departureairlineflightnumberform();
-        $airline = "";
-        $flightnumber = "";
-
-        if ($this->getRequest()->isPost()) {
-            $formData = $this->getRequest()->getPost();
-            if ($departuresearchtimeform->isValid($formData)) {
-                $airline = $departuresearchtimeform->getValue('airlineList');
-                $flightnumber = $departuresearchtimeform->getValue('flightnumber');
-            }
-        } else {            
-        }
-        
         $airline = $_POST['airline'];
         $flight = $_POST['flight'];
 
@@ -228,7 +202,10 @@ class DepartureflightController extends Zend_Controller_Action
         
         $this->view->departureflightschedule = $departureflightschedule->fetchall($select);
     }
+
 }
+
+
 
 
 

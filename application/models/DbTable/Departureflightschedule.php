@@ -5,7 +5,7 @@ class Application_Model_DbTable_Departureflightschedule extends Zend_Db_Table_Ab
     protected $_name = 'departureflightschedule';
 
     public function airlineList() {
-        $select = $this->select()->from($this, array('Airline'))->Order('Airline');
+        $select = $this->select()->DISTINCT()->from($this, array('Airline'))->Order('Airline');
         return $this->fetchAll($select)->toArray();
     }
     

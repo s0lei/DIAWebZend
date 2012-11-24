@@ -14,7 +14,8 @@ function toUpdateFlightData(){
         height: '400px'
     });
     
-    $("button#airlinetimeBtn").click(displayflightsearchresult);
+    $("button#flightnumberBtn").click(displayflightnumbersearchresult);
+    $("button#cityBtn").click(displaycityresult);
     
     $("div.green").click(ArrivalDataUpdate);
     $("div.red").click(DepartureDataUpdate);
@@ -22,7 +23,24 @@ function toUpdateFlightData(){
     $("div.box1").mouseover(testColor).mouseout(testColor1);
     
 }
-function displayflightsearchresult(){
+
+function displaycityresult(){
+    var field_a = $("#airline").val(); 
+    var field_b = $("#city").val();  
+    var data = { 'airline': field_a , 'city': field_b};
+    
+    $.ajax({
+        type: 'POST',
+        data: data,
+        //data: "airline="+field_a + "&flight="+field_b,
+        url: '/DIAWebZend/public/departureflight/displaydepartureairlineandcityflight',
+        success: function(data){
+            $("div#displayairlineresult").html(data);
+        }
+    });
+}
+
+function displayflightnumbersearchresult(){
     var field_a = $("#airline").val(); 
     var field_b = $("#flight").val();  
     var data = { 'airline': field_a , 'flight': field_b};
@@ -33,7 +51,7 @@ function displayflightsearchresult(){
         //data: "airline="+field_a + "&flight="+field_b,
         url: '/DIAWebZend/public/departureflight/displaydepartureairlineflightnumberflight',
         success: function(data){
-            $("div#displayairlineandtimeresult").html(data);
+            $("div#displayairlineresult").html(data);
         }
     });
 }
