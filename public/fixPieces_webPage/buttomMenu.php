@@ -1,11 +1,10 @@
-<a href="/DIAWeb/homePage">Home</a>
+
+<a href="<?php echo $this->url(array('controller' => 'index',
+                    'action' => 'index'));?>">Home</a>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="/DIAWeb/updatingDepartureFlight">Update Departure Flight</a>
+<a href="/DIAWebZend/public/departureflight/index">Search Departure Flight</a>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="/DIAWeb/updatingArrivalFlight">Update Arrival Flight</a>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="/DIAWeb/departureFlightSearch">Search Departure Flight</a>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="/DIAWeb/arrivalFlightSearch">Search Arrival Flight</a>
+<a href="<?php echo $this->url(array('controller' => 'index',
+                    'action' => 'arrivalsearch'));?>">Search Arrival Flight</a>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="/DIAWeb/commentEmail">Comment</a>

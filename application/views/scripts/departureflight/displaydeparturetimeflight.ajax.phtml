@@ -1,10 +1,4 @@
- <?php
-$this->title = "My Albums";
-$this->headTitle($this->title);
-$rowColor = 1;
-?>
-
-<center><h2 class ="displayFlight" >Search results of flight number and airline</h2></center>
+<center><h2 class ="displayFlight" >Below is your search results of Departure Flight</h2></center>
 
 <table id ='person00' class ='tbl1' border='1' >
     <thead>
@@ -18,8 +12,7 @@ $rowColor = 1;
         </tr>
     </thead>
     
-    <?php //foreach ($this->departureflightschedule as $singleschedule) : ?>
-    <?php $singleschedule = $this->departureflightschedule ?>
+    <?php foreach ($this->departureflightschedule as $singleschedule) : ?>
         <tbody>
             <?php 
                   if ($rowColor % 2 === 0){
@@ -43,5 +36,6 @@ $rowColor = 1;
             </tr>  
             <tr id='<?php echo $singleschedule->idNum . "D"; ?>' class="mapRow"><td colspan="7"><div id="<?= $singleschedule->idNum; ?>" ></div></td></tr>
         </tbody>         
-    <?php //endforeach; ?>
+    <?php endforeach; ?>
+
 </table>

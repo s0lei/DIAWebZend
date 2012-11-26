@@ -16,12 +16,88 @@ function toUpdateFlightData(){
     
     $("button#flightnumberBtn").click(displayflightnumbersearchresult);
     $("button#cityBtn").click(displaycityresult);
+    $("button#timeBtn").click(displaytimeresult);
+    $("button#arrivaltimeBtn").click(displayarrivaltimeresult);
+    $("button#arrivalcityBtn").click(displayarrivalcityresult);
+    $("button#arrivalflightnumberBtn").click(displayarrivalflightnumbersearchresult);
     
     $("div.green").click(ArrivalDataUpdate);
     $("div.red").click(DepartureDataUpdate);
        
     $("div.box1").mouseover(testColor).mouseout(testColor1);
     
+}
+
+function displayarrivalflightnumbersearchresult(){
+    var field_a = $("#arrivalairline").val(); 
+    var field_b = $("#arrivalflightnumber").val();  
+    var data = { 'arrivalairline': field_a , 'arrivalflightnumber': field_b};
+    
+    $.ajax({
+        type: 'POST',
+        data: data,
+        //data: "airline="+field_a + "&flight="+field_b,
+        url: '/DIAWebZend/public/index/displayarrivalflightnumberflight',
+        success: function(data){
+            $("div#displayairlineresult").html(data);
+        }
+    });
+}
+
+function displayarrivalcityresult(){
+    var field_a = $("#arrivalairline").val(); 
+    var field_b = $("#arrivalcity").val();  
+    var data = { 'arrivalairline': field_a , 'arrivalcity': field_b};
+    
+    $.ajax({
+        type: 'POST',
+        data: data,
+        //data: "airline="+field_a + "&flight="+field_b,
+        url: '/DIAWebZend/public/index/displayarrivalcityflight',
+        success: function(data){
+            $("div#displayairlineresult").html(data);
+        }
+    });
+}
+
+function displayarrivaltimeresult(){
+    var field_a = $("#airline").val(); 
+    var field_b = $("#starthour").val();
+    var field_c = $("#startampm").val();
+    var field_d = $("#endhour").val();
+    var field_e = $("#endampm").val();
+    
+    var data = { 'airline': field_a , 'starthour': field_b, 'startampm': field_c, 'endhour': field_d, 'endampm': field_e};
+    
+    $.ajax({
+        type: 'POST',
+        data: data,
+        //data: "airline="+field_a + "&flight="+field_b,
+        url: '/DIAWebZend/public/index/displayarrivaltimeflight',
+        success: function(data){
+            $("div#displayairlineresult").html(data);
+        }
+    });
+}
+
+function displaytimeresult(){
+    var field_a = $("#airline").val(); 
+    var field_b = $("#starthour").val();
+    var field_c = $("#startampm").val();
+    var field_d = $("#endhour").val();
+    var field_e = $("#endampm").val();
+    
+    var data = { 'airline': field_a , 'starthour': field_b, 'startampm': field_c, 'endhour': field_d, 'endampm': field_e};
+    
+    $.ajax({
+        type: 'POST',
+        data: data,
+        //data: "airline="+field_a + "&flight="+field_b,
+        url: '/DIAWebZend/public/departureflight/displaydeparturetimeflight',
+        success: function(data){
+            $("div#displayairlineresult").html(data);
+        }
+    });
 }
 
 function displaycityresult(){
@@ -122,7 +198,7 @@ function startDepartureProgress()
     if(count < 100)
     {
         count = count+1;
-        setTimeout("startDepartureProgress()", 50);
+        setTimeout("startDepartureProgress()", 200);
     }
 
     $("#progressbar1").progressbar({
@@ -135,7 +211,7 @@ function startArrivalProgress()
     if(count < 100)
     {
         count = count+1;
-        setTimeout("startArrivalProgress()", 50);
+        setTimeout("startArrivalProgress()", 200);
     }
 
     $("#progressbar2").progressbar({

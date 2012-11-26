@@ -17,6 +17,18 @@ $().ready(function() {
         matchContains: true,
         selectFirst: false
     });
+    
+    $("#arrivalcity").autocomplete("get_arrivalcity_list.php", {
+        width: 260,
+        matchContains: true,
+        selectFirst: false
+    });
+    
+    $("#arrivalflightnumber").autocomplete("get_arrivalflightnumber_list.php", {
+        width: 260,
+        matchContains: true,
+        selectFirst: false
+    });
 });
 
 

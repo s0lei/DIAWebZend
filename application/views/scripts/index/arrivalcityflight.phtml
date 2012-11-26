@@ -1,12 +1,11 @@
-                 
 <div id="searchForm"> 
     <h2>Search a specific airline with specific city name<br /><br /></h2> 
     <?php
-    $departureflightschedule = new Application_Model_DbTable_Departureflightschedule();
-    $result = $departureflightschedule->airlineList();
+    $arrivalflightschedule = new Application_Model_DbTable_Arrivalflightschedule();
+    $result = $arrivalflightschedule->airlineList();
     ?>
     Airline
-    <select name="airline" id="airline">
+    <select name="arrivalairline" id="arrivalairline">
         <option value="Any Airlines">Any Airlines</option>
         <?php foreach ($result as $value) : ?>   
             <option value="<?=$value['Airline']?>"><?=$value['Airline']?></option>
@@ -14,8 +13,8 @@
     </select>
 
     <!--input type="text" name="airline01" id="airline01" /-->
-    City Name <input type="text" name="city" id="city" />
-    <button type="button" id="cityBtn" style="height: 25px; width: 70px">Filter</button>
+    City Name <input type="text" name="arrivalcity" id="arrivalcity" />
+    <button type="button" id="arrivalcityBtn" style="height: 25px; width: 70px">Filter</button>
 </div>
 
 <div id="displayairlineresult">

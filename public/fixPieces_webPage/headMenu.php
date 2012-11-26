@@ -1,7 +1,6 @@
 <div id="menucontainer">
     <ul id="nav">
         <li>
-
             <a href="<?php echo $this->url(array('controller' => 'index',
                     'action' => 'index'));?>">Home</a>
             <ul>
@@ -35,16 +34,16 @@
                     'action' => 'arrivalsearch'));?>">All Flight</a>
                 </li>
                 <li>
-                    <a href="/DIAWeb/arrivalFlightSearch">Airline</a>
+                    <a href="<?php echo $this->url(array('controller' => 'index',
+                    'action' => 'arrivaltimeflight'));?>">Airline + Time</a>
                 </li>
                 <li>
-                    <a href="/DIAWeb/arrivalFlightSearch">Airline + Time</a>
+                    <a href="<?php echo $this->url(array('controller' => 'index',
+                    'action' => 'arrivalcityflight'));?>">Airline + City</a>
                 </li>
                 <li>
-                    <a href="/DIAWeb/arrivalFlightSearch">Airline + City</a>
-                </li>
-                <li>
-                    <a href="/DIAWeb/arrivalFlightSearch">Airline + Flight #</a>
+                    <a href="<?php echo $this->url(array('controller' => 'index',
+                    'action' => 'arrivalflightnumberflight'));?>">Airline + Flight #</a>
                 </li>
             </ul>
         </li>
@@ -52,19 +51,19 @@
             <a href="#">Search Connecting Flight</a>
             <ul>
                 <li>
-                    <a href="#">All Flight</a>
+                    <a href="/DIAWebZend/public/departureflight/index">All Flight</a>
                 </li>
                 <li>
-                    <a href="#">Airline</a>
+                    <a href="<?php echo $this->url(array('controller' => 'departureflight',
+                    'action' => 'airlineandtime'));?>">Airline + Time</a>
                 </li>
                 <li>
-                    <a href="#">Airline + Time</a>
+                    <a href="<?php echo $this->url(array('controller' => 'departureflight',
+                    'action' => 'airlineandcity'));?>">Airline + City</a>
                 </li>
                 <li>
-                    <a href="#">Airline + City</a>
-                </li>
-                <li>
-                    <a href="#">Airline + Flight #</a>
+                    <a href="<?php echo $this->url(array('controller' => 'departureflight',
+                    'action' => 'airlineflightnumber'));?>">Airline + Flight #</a>
                 </li>
             </ul>
         </li>

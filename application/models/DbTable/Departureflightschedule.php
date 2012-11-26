@@ -10,7 +10,7 @@ class Application_Model_DbTable_Departureflightschedule extends Zend_Db_Table_Ab
     }
     
     public function cityList() {
-        $select = $this->select()->from($this, array('CityState'))->Order('CityState');
+        $select = $this->select()->DISTINCT()-from($this, array('CityState'))->Order('CityState');
         return $this->fetchAll($select)->toArray();
     }
 

@@ -1,14 +1,72 @@
 
 <div id="allflightsearchForm"> 
-    <h1>There are two options of departure flight search</h1> <br />
+    <h1>There are two options of departure flight search</h1>
     <h2>
     <?php
     echo $this->departuresearchform;
     ?>
-    </h2>  
-    <br /><br /><h2>2. Search a specific airline
+</div>
+
+<div id="searchForm"> 
+<h2>2. Search a specific airline
         in certain range of departure time </h2>
     <?php
-    echo $this->departuresearchtimeform;
-    ?>  
+    $departureflightschedule = new Application_Model_DbTable_Departureflightschedule();
+    $result = $departureflightschedule->airlineList();
+    ?>
+    Airline
+    <select name="airline" id="airline">
+        <option value="Any Airlines">Any Airlines</option>
+        <?php foreach ($result as $value) : ?>   
+            <option value="<?=$value['Airline']?>"><?=$value['Airline']?></option>
+        <?php endforeach; ?>
+    </select>
+    
+    Start Time
+    <select name="starthour" id="starthour">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>,
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+     </select>
+    <select name="startampm" id="startampm">
+        <option value="am">am</option>
+        <option value="pm">pm</option>
+     </select> 
+    
+    End Time
+    <select name="endhour" id="endhour">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>,
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+     </select>
+    <select name="endampm" id="endampm">
+        <option value="am">am</option>
+        <option value="pm">pm</option>
+     </select> 
+    
+    <button type="button" id="timeBtn" style="height: 25px; width: 70px">Filter</button>
+</div>
+
+<div id="displayairlineresult">
+
 </div>

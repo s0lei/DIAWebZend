@@ -19,6 +19,9 @@ class DepartureflightController extends Zend_Controller_Action
         
         $ajaxContext04 = $this->_helper->getHelper('AjaxContext');
         $ajaxContext04->addActionContext('displaydepartureairlineandcityflight', 'html')->initContext('html');
+        
+        $ajaxContext05 = $this->_helper->getHelper('AjaxContext');
+        $ajaxContext05->addActionContext('displaydeparturetimeflight', 'html')->initContext('html');
     }
 
     public function indexAction()
@@ -29,12 +32,16 @@ class DepartureflightController extends Zend_Controller_Action
         $departuresearchform->arrangeOrder->setLabel('1. Show all departure flight in order of');
         $departuresearchform->submit->setLabel('Go');
         $this->view->departuresearchform = $departuresearchform;
-
+        
+        
+/*
         $departuresearchtimeform = new Application_Form_Departureflightsearchtime();
         $departuresearchtimeform->setAction('/DIAWebZend/public/departureflight/displaydeparturetimeflight')
                 ->setMethod('post');
         $departuresearchtimeform->submit->setLabel('Go');
         $this->view->departuresearchtimeform = $departuresearchtimeform;
+ * 
+ */
     }
 
     public function populatedeparturetableAction()
@@ -93,41 +100,28 @@ class DepartureflightController extends Zend_Controller_Action
 
     public function displaydeparturetimeflightAction()
     {
-        $departuresearchtimeform = new Application_Form_Departureflightsearchtime();
-        $airline = "";
+        $airline = $_POST['airline'];
+        $starthour = $_POST['starthour'];
+        $startampm = $_POST['startampm'];
+        $endhour = $_POST['endhour'];
+        $endampm = $_POST['endampm'];
 
-        if ($this->getRequest()->isPost()) {
-            $formData = $this->getRequest()->getPost();
-            if ($departuresearchtimeform->isValid($formData)) {
-                $airline = $departuresearchtimeform->getValue('airlineList');
-                $startTime = $departuresearchtimeform->getValue('startTime');
-                $ampmStart = $departuresearchtimeform->getValue('ampmStart');
-                $endTime = $departuresearchtimeform->getValue('endTime');
-                $ampmEnd = $departuresearchtimeform->getValue('ampmEnd');
-            }
-        } else {
-            
-        }
-
-        $startTime = intval($startTime);
-        if ($ampmStart === 'pm')
-            $startTime = $startTime + 12;
-        $endTime = intval($endTime);
-        if ($ampmEnd === 'pm')
-            $$endTime = $endTime + 12;
-
-        $departureflightschedule = new Application_Model_DbTable_Departureflightschedule();
+        if ($startampm === "pm")
+            $starthour = $starthour + 12;
+        if ($endampm === "pm")
+            $endhour = $endhour + 12;
+        
+         $departureflightschedule = new Application_Model_DbTable_Departureflightschedule();
         if ($airline === 'Any Airlines') {
             $select = $departureflightschedule->select()
-                    //->where('Airline = ?', 'United Airlines');
-                    ->where('Time >= ?', $startTime)
-                    ->where('Time < ?', $endTime)
-                    ->order('Airline');
+                    ->where('Time >= ?', $starthour)
+                    ->where('Time < ?', $endhour)
+                    ->order('Time');
         } else {
             $select = $departureflightschedule->select()
                     ->where('Airline = ?', $airline)
-                    ->where('Time >= ?', $startTime)
-                    ->where('Time < ?', $endTime)
+                    ->where('Time >= ?', $starthour)
+                    ->where('Time < ?', $endhour)
                     ->order('Time');
         }
 
@@ -190,7 +184,7 @@ class DepartureflightController extends Zend_Controller_Action
 
         $departureflightschedule = new Application_Model_DbTable_Departureflightschedule();
          if ($airline === 'Any Airlines') {
-            $select = $departureflightschedule->select()
+            $select = $departureflightschedule->select()->Distinct()
                     ->where('FlightNumber = ?', $flight)
                     ->order('Airline');
         } else {
@@ -200,7 +194,7 @@ class DepartureflightController extends Zend_Controller_Action
                     ->order('Airline');
         } 
         
-        $this->view->departureflightschedule = $departureflightschedule->fetchall($select);
+        $this->view->departureflightschedule = $departureflightschedule->fetchrow($select);
     }
 
 }

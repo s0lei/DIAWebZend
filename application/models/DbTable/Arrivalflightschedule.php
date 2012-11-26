@@ -5,8 +5,13 @@ class Application_Model_DbTable_Arrivalflightschedule extends Zend_Db_Table_Abst
     protected $_name = 'arrivalflightschedule';
     
     public function airlineList() {     
-      $select = $this->select()->from($this, array('Airline'))->Order('Airline'); 
+      $select = $this->select()->DISTINCT()->from($this, array('Airline'))->Order('Airline'); 
       return $this->fetchAll($select)->toArray();
+    }
+    
+     public function cityList() {
+        $select = $this->select()->DISTINCT()-from($this, array('CityState'))->Order('CityState');
+        return $this->fetchAll($select)->toArray();
     }
 
     public function populateArrivalTable() {
