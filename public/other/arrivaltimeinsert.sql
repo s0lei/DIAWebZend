@@ -1,1 +1,0 @@
-INSERT INTO arrivalupdatetime (id, updatedtime) VALUES(2, NOW() ) ;

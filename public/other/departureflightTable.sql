@@ -8,5 +8,6 @@ CREATE TABLE DEPARTUREFLIGHTSCHEDULE(
                 DateTime char(20),
                 Status char(40),
                 Gate char(5),
-                Time char(20),
-                PRIMARY KEY(id));
+                Time float,
+                PRIMARY KEY(id)
+                );

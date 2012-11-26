@@ -197,8 +197,8 @@ function startDepartureProgress()
 {
     if(count < 100)
     {
-        count = count+1;
-        setTimeout("startDepartureProgress()", 200);
+        count = count+0.1;
+        setTimeout("startDepartureProgress()", 140);
     }
 
     $("#progressbar1").progressbar({
@@ -210,8 +210,8 @@ function startArrivalProgress()
 {
     if(count < 100)
     {
-        count = count+1;
-        setTimeout("startArrivalProgress()", 200);
+        count = count+ 0.1;
+        setTimeout("startArrivalProgress()", 140);
     }
 
     $("#progressbar2").progressbar({

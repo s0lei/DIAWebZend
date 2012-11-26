@@ -10,6 +10,15 @@
       <controllersDirectory>
         <controllerFile controllerName="Index">
           <actionMethod actionName="index"/>
+          <actionMethod actionName="arrivaltimeflight"/>
+          <actionMethod actionName="arrivalcityflight"/>
+          <actionMethod actionName="displayarrivalcityflight"/>
+          <actionMethod actionName="arrivalflightnumberflight"/>
+          <actionMethod actionName="displayarrivalflightnumberflight"/>
+          <actionMethod actionName="about"/>
+          <actionMethod actionName="comment"/>
+          <actionMethod actionName="sentComment"/>
+          <actionMethod actionName="sentcomment"/>
         </controllerFile>
         <controllerFile controllerName="Error"/>
         <controllerFile controllerName="Departureflight">
@@ -25,6 +34,7 @@
           <actionMethod actionName="displaydepartureairlineandcityflight"/>
           <actionMethod actionName="airlineflightnumber"/>
           <actionMethod actionName="displaydepartureairlineflightnumberflight"/>
+          <actionMethod actionName="displaydeparturecityflight"/>
         </controllerFile>
       </controllersDirectory>
       <formsDirectory enabled="false">
@@ -36,6 +46,7 @@
       <modelsDirectory>
         <dbTableDirectory>
           <dbTableFile dbTableName="Departureflightschedule"/>
+          <dbTableFile dbTableName="Comment"/>
         </dbTableDirectory>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
@@ -83,6 +94,36 @@
           <viewControllerScriptsDirectory forControllerName="Departureflight">
             <viewScriptFile forActionName="displaydepartureairlineflightnumberflight"/>
           </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Departureflight">
+            <viewScriptFile forActionName="displaydeparturecityflight"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Index">
+            <viewScriptFile forActionName="arrivaltimeflight"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Index">
+            <viewScriptFile forActionName="arrivalcityflight"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Index">
+            <viewScriptFile forActionName="displayarrivalcityflight"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Index">
+            <viewScriptFile forActionName="arrivalflightnumberflight"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Index">
+            <viewScriptFile forActionName="displayarrivalflightnumberflight"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Index">
+            <viewScriptFile forActionName="about"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Index">
+            <viewScriptFile forActionName="comment"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Index">
+            <viewScriptFile forActionName="sentComment"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Index">
+            <viewScriptFile forActionName="sentcomment"/>
+          </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
         <viewFiltersDirectory enabled="false"/>
@@ -119,6 +160,15 @@
         <testApplicationControllerDirectory>
           <testApplicationControllerFile forControllerName="Index">
             <testApplicationActionMethod forActionName="index"/>
+            <testApplicationActionMethod forActionName="arrivaltimeflight"/>
+            <testApplicationActionMethod forActionName="arrivalcityflight"/>
+            <testApplicationActionMethod forActionName="displayarrivalcityflight"/>
+            <testApplicationActionMethod forActionName="arrivalflightnumberflight"/>
+            <testApplicationActionMethod forActionName="displayarrivalflightnumberflight"/>
+            <testApplicationActionMethod forActionName="about"/>
+            <testApplicationActionMethod forActionName="comment"/>
+            <testApplicationActionMethod forActionName="sentComment"/>
+            <testApplicationActionMethod forActionName="sentcomment"/>
           </testApplicationControllerFile>
           <testApplicationControllerFile forControllerName="Departureflight">
             <testApplicationActionMethod forActionName="index"/>
@@ -133,6 +183,7 @@
             <testApplicationActionMethod forActionName="displaydepartureairlineandcityflight"/>
             <testApplicationActionMethod forActionName="airlineflightnumber"/>
             <testApplicationActionMethod forActionName="displaydepartureairlineflightnumberflight"/>
+            <testApplicationActionMethod forActionName="displaydeparturecityflight"/>
           </testApplicationControllerFile>
         </testApplicationControllerDirectory>
       </testApplicationDirectory>
