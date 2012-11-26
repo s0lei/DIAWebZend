@@ -7,4 +7,5 @@
 <a href="<?php echo $this->url(array('controller' => 'index',
                     'action' => 'arrivalsearch'));?>">Search Arrival Flight</a>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="/DIAWeb/commentEmail">Comment</a>
+<a href="<?php echo $this->url(array('controller' => 'index',
+                    'action' => 'comment'));?>">Comment</a>

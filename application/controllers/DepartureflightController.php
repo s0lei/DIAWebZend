@@ -115,7 +115,7 @@ class DepartureflightController extends Zend_Controller_Action
         if ($airline === 'Any Airlines') {
             $select = $departureflightschedule->select()
                     ->where('Time >= ?', $starthour)
-                    ->where('Time < ?', $endhour)
+                    ->where('Time <= ?', $endhour)
                     ->order('Time');
         } else {
             $select = $departureflightschedule->select()

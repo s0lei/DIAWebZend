@@ -71,10 +71,12 @@
             <a href="#">Contact</a>
             <ul>
                 <li>
-                    <a href="/DIAWeb/commentEmail">Comment</a>
+                    <a href="<?php echo $this->url(array('controller' => 'index',
+                    'action' => 'comment'));?>">Comment</a>
                 </li>
                 <li>
-                    <a href="/DIAWeb/about">About</a>
+                    <a href="<?php echo $this->url(array('controller' => 'index',
+                    'action' => 'about'));?>">About</a>
                 </li>
             </ul>
         </li>

@@ -116,7 +116,7 @@ class IndexController extends Zend_Controller_Action
         if ($airline === 'Any Airlines') {
             $select = $arrivalflightschedule->select()
                     ->where('Time >= ?', $starthour)
-                    ->where('Time < ?', $endhour)
+                    ->where('Time <= ?', $endhour)
                     ->order('Time');
         } else {
             $select = $arrivalflightschedule->select()
@@ -190,8 +190,35 @@ class IndexController extends Zend_Controller_Action
         $this->view->arrivalflightschedule = $arrivalflightschedule->fetchrow($select);
     }
 
+    public function aboutAction()
+    {
+        // action body
+    }
+
+    public function commentAction()
+    {
+        // action body
+    }
+
+    public function sentcommentAction()
+    {
+        $commentDB = new Application_Model_DbTable_Comment();
+        $comment = $_POST["comment"];
+        $commentDB->insertCommentTable($comment);
+        
+        $this->view->comment = $comment;
+    }
+
 
 }
+
+
+
+
+
+
+
+
 
 
 

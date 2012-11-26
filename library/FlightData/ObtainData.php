@@ -39,11 +39,12 @@ class FlightData_ObtainData {
 
     public function getDateAmpmTime($flightDateTime) {
         $flightDateTime = trim($flightDateTime);
-        $separator1 = strpos($flightDateTime, " ");
+        //$separator1 = strpos($flightDateTime, " ");
         $timelength = strlen($flightDateTime);
 
         $time = substr($flightDateTime, 0, $timelength - 2);
-        $am_pm = substr($flightDateTime, $separator1);
+        $am_pm = substr($flightDateTime, $timelength - 2);
+        //$am_pm = substr($flightDateTime, $separator1);
 
         $dateAmpmTime = array();
         $dateAmpmTime[0] = trim($time);
@@ -61,7 +62,7 @@ class FlightData_ObtainData {
     public function getArrivalDataList() {
         return $this->arrivalDataList;
     }
-    
+
     public function getdepartureDataList() {
         return $this->departureDataList;
     }
@@ -116,33 +117,35 @@ class FlightData_ObtainData {
                     }
                     $minute = $dateTimeArray[2] + 0;
                     $ntime = $hour + ($minute / 100);
-                    $timeString = strval($ntime);
-                    $arrivalData1->setTime($timeString);
+                    //$timeString = strval($ntime);
+                    $arrivalData1->setTime($ntime);
+                    //$arrivalData1->setTime($timeString);
                 } else {
                     $arrivalData1->setCityState($CityState);
                     $arrivalData1->setStatus($Status);
                     $arrivalData1->setDateTime($flightDateTime);
                     $arrivalData1->setGate($Gate);
                     $arrivalData1->setBaggage($Baggage);
-                    $arrivalData1->setTime($timeString);
+                    //$arrivalData1->setTime($timeString);
+                    $arrivalData1->setTime($ntime);
                 }
                 $this->codeShare = FALSE;
                 $this->arrivalDataList[] = $arrivalData1;
             }
         }
     }
-    
+
     public function fillDepartureData() {
         $webPageArray = $this->GetDepartureFlightTextInfo();
         $idTemp = 0;
-        
+
         foreach ($webPageArray as $wholeWebContent) {
             $timeSlotWebPage = "";
             $timeSlotWebPage = $wholeWebContent;
 
             $this->start = strpos($timeSlotWebPage, $this->dataStart);
             $this->stop = strpos($timeSlotWebPage, $this->dataEnd, $this->start);
-            
+
             $dateTimeArray;
             $CityState = "";
             $Status = "";
@@ -157,7 +160,7 @@ class FlightData_ObtainData {
 
                 $departureData->setAirline($this->FillAirline($timeSlotWebPage));
                 $departureData->setFlightNumber($this->FillFlightNumber($timeSlotWebPage));
-                
+
                 if ($this->codeShare === FALSE) {
                     $CityState = $this->FillCityState($timeSlotWebPage);
                     $departureData->setCityState($CityState);
@@ -178,14 +181,16 @@ class FlightData_ObtainData {
                     }
                     $minute = $dateTimeArray[2] + 0;
                     $ntime = $hour + ($minute / 100);
-                    $timeString = strval($ntime);
-                    $departureData->setTime($timeString);
+                    //$timeString = strval($ntime);
+                    $departureData->setTime($ntime);
+                    //$departureData->setTime($timeString);
                 } else {
                     $departureData->setCityState($CityState);
                     $departureData->setStatus($Status);
                     $departureData->setDateTime($flightDateTime);
                     $departureData->setGate($Gate);
-                    $departureData->setTime($timeString);
+                    $departureData->setTime($ntime);
+                    //$departureData->setTime($timeString);
                 }
                 $this->codeShare = FALSE;
                 $this->departureDataList[] = $departureData;
@@ -344,8 +349,19 @@ class FlightData_ObtainData {
         $webContentArray = array();
 
         $urlArray = array();
-        $urlArray[] = "http://www.flydenver.com/flights?ArrivingAirlineCode=&ArrivingFlightNumber=&FlightStatus=IsArriving&SourceAirportCode=&DestinationAirportCode=DEN&SourceAirportCodeValue=&Arrive_FlightRange=12AM-6AM&Arrive_FlightRange_Value=1&TravelDate=0";
-        $urlArray[] = "http://www.flydenver.com/flights?ArrivingAirlineCode=&ArrivingFlightNumber=&FlightStatus=IsArriving&SourceAirportCode=&DestinationAirportCode=DEN&SourceAirportCodeValue=&Arrive_FlightRange=6AM-9AM&Arrive_FlightRange_Value=1&TravelDate=0";
+        //$urlArray[] = "http://www.flydenver.com/flights?ArrivingAirlineCode=&ArrivingFlightNumber=&FlightStatus=IsArriving&SourceAirportCode=&DestinationAirportCode=DEN&SourceAirportCodeValue=&Arrive_FlightRange=12AM-6AM&Arrive_FlightRange_Value=1&TravelDate=0";
+        //$urlArray[] = "http://www.flydenver.com/flights?ArrivingAirlineCode=&ArrivingFlightNumber=&FlightStatus=IsArriving&SourceAirportCode=&DestinationAirportCode=DEN&SourceAirportCodeValue=&Arrive_FlightRange=6AM-9AM&Arrive_FlightRange_Value=1&TravelDate=0";
+        //$urlArray[] = "http://www.flydenver.com/flights?ArrivingAirlineCode=&ArrivingFlightNumber=&FlightStatus=IsArriving&SourceAirportCode=&DestinationAirportCode=DEN&SourceAirportCodeValue=&Arrive_FlightRange=9AM-10AM&Arrive_FlightRange_Value=1&TravelDate=0";
+        //$urlArray[] = "http://www.flydenver.com/flights?ArrivingAirlineCode=&ArrivingFlightNumber=&FlightStatus=IsArriving&SourceAirportCode=&DestinationAirportCode=DEN&SourceAirportCodeValue=&Arrive_FlightRange=10AM-11AM&Arrive_FlightRange_Value=1&TravelDate=0";
+        //$urlArray[] = "http://www.flydenver.com/flights?ArrivingAirlineCode=&ArrivingFlightNumber=&FlightStatus=IsArriving&SourceAirportCode=&DestinationAirportCode=DEN&SourceAirportCodeValue=&Arrive_FlightRange=11AM-12PM&Arrive_FlightRange_Value=1&TravelDate=0";
+        //$urlArray[] = "http://www.flydenver.com/flights?ArrivingAirlineCode=&ArrivingFlightNumber=&FlightStatus=IsArriving&SourceAirportCode=&DestinationAirportCode=DEN&SourceAirportCodeValue=&Arrive_FlightRange=12PM-2PM&Arrive_FlightRange_Value=1&TravelDate=0";
+        //$urlArray[] = "http://www.flydenver.com/flights?ArrivingAirlineCode=&ArrivingFlightNumber=&FlightStatus=IsArriving&SourceAirportCode=&DestinationAirportCode=DEN&SourceAirportCodeValue=&Arrive_FlightRange=2PM-4PM&Arrive_FlightRange_Value=1&TravelDate=0";
+        //$urlArray[] = "http://www.flydenver.com/flights?ArrivingAirlineCode=&ArrivingFlightNumber=&FlightStatus=IsArriving&SourceAirportCode=&DestinationAirportCode=DEN&SourceAirportCodeValue=&Arrive_FlightRange=4PM-5PM&Arrive_FlightRange_Value=1&TravelDate=0";
+        //$urlArray[] = "http://www.flydenver.com/flights?ArrivingAirlineCode=&ArrivingFlightNumber=&FlightStatus=IsArriving&SourceAirportCode=&DestinationAirportCode=DEN&SourceAirportCodeValue=&Arrive_FlightRange=5PM-6PM&Arrive_FlightRange_Value=1&TravelDate=0";
+        $urlArray[] = "http://www.flydenver.com/flights?ArrivingAirlineCode=&ArrivingFlightNumber=&FlightStatus=IsArriving&SourceAirportCode=&DestinationAirportCode=DEN&SourceAirportCodeValue=&Arrive_FlightRange=6PM-7PM&Arrive_FlightRange_Value=1&TravelDate=0";
+        $urlArray[] = "http://www.flydenver.com/flights?ArrivingAirlineCode=&ArrivingFlightNumber=&FlightStatus=IsArriving&SourceAirportCode=&DestinationAirportCode=DEN&SourceAirportCodeValue=&Arrive_FlightRange=7PM-8PM&Arrive_FlightRange_Value=1&TravelDate=0";
+        $urlArray[] = "http://www.flydenver.com/flights?ArrivingAirlineCode=&ArrivingFlightNumber=&FlightStatus=IsArriving&SourceAirportCode=&DestinationAirportCode=DEN&SourceAirportCodeValue=&Arrive_FlightRange=8PM-9PM&Arrive_FlightRange_Value=1&TravelDate=0";
+        $urlArray[] = "http://www.flydenver.com/flights?ArrivingAirlineCode=&ArrivingFlightNumber=&FlightStatus=IsArriving&SourceAirportCode=&DestinationAirportCode=DEN&SourceAirportCodeValue=&Arrive_FlightRange=9PM-12AM&Arrive_FlightRange_Value=1&TravelDate=0";
 
         foreach ($urlArray as $url) {
             $read = fopen("$url", "r")
@@ -370,6 +386,17 @@ class FlightData_ObtainData {
         $urlArray = array();
         $urlArray[] = "http://www.flydenver.com/flights?DepartingAirlineCode=&DepartingFlightNumber=&FlightStatus=IsDeparting&SourceAirportCode=DEN&DestinationAirportCode=&DestinationAirportCodeValue=&Depart_FlightRange=12AM-6AM&Depart_FlightRange_Value=1&TravelDate=0";
         $urlArray[] = "http://www.flydenver.com/flights?DepartingAirlineCode=&DepartingFlightNumber=&FlightStatus=IsDeparting&SourceAirportCode=DEN&DestinationAirportCode=&DestinationAirportCodeValue=&Depart_FlightRange=6AM-8AM&Depart_FlightRange_Value=1&TravelDate=0";
+        $urlArray[] = "http://www.flydenver.com/flights?DepartingAirlineCode=&DepartingFlightNumber=&FlightStatus=IsDeparting&SourceAirportCode=DEN&DestinationAirportCode=&DestinationAirportCodeValue=&Depart_FlightRange=8AM-9AM&Depart_FlightRange_Value=1&TravelDate=0";
+        $urlArray[] = "http://www.flydenver.com/flights?DepartingAirlineCode=&DepartingFlightNumber=&FlightStatus=IsDeparting&SourceAirportCode=DEN&DestinationAirportCode=&DestinationAirportCodeValue=&Depart_FlightRange=9AM-10AM&Depart_FlightRange_Value=1&TravelDate=0";
+        //$urlArray[] = "http://www.flydenver.com/flights?DepartingAirlineCode=&DepartingFlightNumber=&FlightStatus=IsDeparting&SourceAirportCode=DEN&DestinationAirportCode=&DestinationAirportCodeValue=&Depart_FlightRange=10AM-11AM&Depart_FlightRange_Value=1&TravelDate=0";
+        //$urlArray[] = "http://www.flydenver.com/flights?DepartingAirlineCode=&DepartingFlightNumber=&FlightStatus=IsDeparting&SourceAirportCode=DEN&DestinationAirportCode=&DestinationAirportCodeValue=&Depart_FlightRange=11AM-12PM&Depart_FlightRange_Value=1&TravelDate=0";
+        //$urlArray[] = "http://www.flydenver.com/flights?DepartingAirlineCode=&DepartingFlightNumber=&FlightStatus=IsDeparting&SourceAirportCode=DEN&DestinationAirportCode=&DestinationAirportCodeValue=&Depart_FlightRange=12PM-1PM&Depart_FlightRange_Value=1&TravelDate=0";
+        //$urlArray[] = "http://www.flydenver.com/flights?DepartingAirlineCode=&DepartingFlightNumber=&FlightStatus=IsDeparting&SourceAirportCode=DEN&DestinationAirportCode=&DestinationAirportCodeValue=&Depart_FlightRange=1PM-3PM&Depart_FlightRange_Value=1&TravelDate=0";
+        //$urlArray[] = "http://www.flydenver.com/flights?DepartingAirlineCode=&DepartingFlightNumber=&FlightStatus=IsDeparting&SourceAirportCode=DEN&DestinationAirportCode=&DestinationAirportCodeValue=&Depart_FlightRange=3PM-5PM&Depart_FlightRange_Value=1&TravelDate=0";
+        //$urlArray[] = "http://www.flydenver.com/flights?DepartingAirlineCode=&DepartingFlightNumber=&FlightStatus=IsDeparting&SourceAirportCode=DEN&DestinationAirportCode=&DestinationAirportCodeValue=&Depart_FlightRange=5PM-6PM&Depart_FlightRange_Value=1&TravelDate=0";
+        //$urlArray[] = "http://www.flydenver.com/flights?DepartingAirlineCode=&DepartingFlightNumber=&FlightStatus=IsDeparting&SourceAirportCode=DEN&DestinationAirportCode=&DestinationAirportCodeValue=&Depart_FlightRange=6PM-7PM&Depart_FlightRange_Value=1&TravelDate=0";
+        //$urlArray[] = "http://www.flydenver.com/flights?DepartingAirlineCode=&DepartingFlightNumber=&FlightStatus=IsDeparting&SourceAirportCode=DEN&DestinationAirportCode=&DestinationAirportCodeValue=&Depart_FlightRange=7PM-9PM&Depart_FlightRange_Value=1&TravelDate=0";
+        //$urlArray[] = "http://www.flydenver.com/flights?DepartingAirlineCode=&DepartingFlightNumber=&FlightStatus=IsDeparting&SourceAirportCode=DEN&DestinationAirportCode=&DestinationAirportCodeValue=&Depart_FlightRange=9PM-12AM&Depart_FlightRange_Value=1&TravelDate=0";
 
         foreach ($urlArray as $url) {
             $read = fopen("$url", "r")
