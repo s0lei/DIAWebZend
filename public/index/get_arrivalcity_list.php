@@ -1,6 +1,6 @@
 <?php
   $dh = "localhost";
-  $dbDatabase = "diaflightzend";
+  $dbDatabase = "diaflightzendafternoon";
   $dbUser = "root";
   $pswd = "yinghan";
 

@@ -51,7 +51,7 @@ class IndexController extends Zend_Controller_Action
     public function arrivalsearchAction()
     {
         $arrivalsearchform = new Application_Form_Flightsearch();
-        $arrivalsearchform->setAction('/DIAWebZend_Morning/public/index/displayarrivalflight')
+        $arrivalsearchform->setAction('/DIAWebZend_Afternoon/public/index/displayarrivalflight')
                 ->setMethod('post');
         $arrivalsearchform->arrangeOrder->setLabel('1. Show all arrival flight in order of');
         $arrivalsearchform->submit->setLabel('Go');
@@ -97,6 +97,7 @@ class IndexController extends Zend_Controller_Action
                 ->order($arrangeOrder);
 
         $this->view->arrivalflightschedule = $arrivalflightschedule->fetchall($select);
+        $this->view->arrangeOrder = $arrangeOrder;
     }
 
     public function displayarrivaltimeflightAction()

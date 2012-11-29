@@ -10,7 +10,7 @@
             <a href="#">Search Departure Flight</a>
             <ul>
                 <li>
-                    <a href="/DIAWebZend_Morning/public/departureflight/index">All Flight</a>
+                    <a href="/DIAWebZend_Afternoon/public/departureflight/index">All Flight</a>
                 </li>
                 <li>
                     <a href="<?php echo $this->url(array('controller' => 'departureflight',
@@ -51,7 +51,7 @@
             <a href="#">Search Connecting Flight</a>
             <ul>
                 <li>
-                    <a href="/DIAWebZend_Morning/public/departureflight/index">All Flight</a>
+                    <a href="/DIAWebZend_Afternoon/public/departureflight/index">All Flight</a>
                 </li>
                 <li>
                     <a href="<?php echo $this->url(array('controller' => 'departureflight',
