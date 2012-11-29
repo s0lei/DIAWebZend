@@ -27,7 +27,7 @@ class DepartureflightController extends Zend_Controller_Action
     public function indexAction()
     {
         $departuresearchform = new Application_Form_Flightsearch();
-        $departuresearchform->setAction('/DIAWebZend/public/departureflight/displaydepartureflight')
+        $departuresearchform->setAction('/DIAWebZend_Morning/public/departureflight/displaydepartureflight')
                 ->setMethod('post');
         $departuresearchform->arrangeOrder->setLabel('1. Show all departure flight in order of');
         $departuresearchform->submit->setLabel('Go');

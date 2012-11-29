@@ -37,7 +37,7 @@ function displayarrivalflightnumbersearchresult(){
         type: 'POST',
         data: data,
         //data: "airline="+field_a + "&flight="+field_b,
-        url: '/DIAWebZend/public/index/displayarrivalflightnumberflight',
+        url: '/DIAWebZend_Morning/public/index/displayarrivalflightnumberflight',
         success: function(data){
             $("div#displayairlineresult").html(data);
         }
@@ -53,7 +53,7 @@ function displayarrivalcityresult(){
         type: 'POST',
         data: data,
         //data: "airline="+field_a + "&flight="+field_b,
-        url: '/DIAWebZend/public/index/displayarrivalcityflight',
+        url: '/DIAWebZend_Morning/public/index/displayarrivalcityflight',
         success: function(data){
             $("div#displayairlineresult").html(data);
         }
@@ -73,7 +73,7 @@ function displayarrivaltimeresult(){
         type: 'POST',
         data: data,
         //data: "airline="+field_a + "&flight="+field_b,
-        url: '/DIAWebZend/public/index/displayarrivaltimeflight',
+        url: '/DIAWebZend_Morning/public/index/displayarrivaltimeflight',
         success: function(data){
             $("div#displayairlineresult").html(data);
         }
@@ -93,7 +93,7 @@ function displaytimeresult(){
         type: 'POST',
         data: data,
         //data: "airline="+field_a + "&flight="+field_b,
-        url: '/DIAWebZend/public/departureflight/displaydeparturetimeflight',
+        url: '/DIAWebZend_Morning/public/departureflight/displaydeparturetimeflight',
         success: function(data){
             $("div#displayairlineresult").html(data);
         }
@@ -109,7 +109,7 @@ function displaycityresult(){
         type: 'POST',
         data: data,
         //data: "airline="+field_a + "&flight="+field_b,
-        url: '/DIAWebZend/public/departureflight/displaydepartureairlineandcityflight',
+        url: '/DIAWebZend_Morning/public/departureflight/displaydepartureairlineandcityflight',
         success: function(data){
             $("div#displayairlineresult").html(data);
         }
@@ -125,7 +125,7 @@ function displayflightnumbersearchresult(){
         type: 'POST',
         data: data,
         //data: "airline="+field_a + "&flight="+field_b,
-        url: '/DIAWebZend/public/departureflight/displaydepartureairlineflightnumberflight',
+        url: '/DIAWebZend_Morning/public/departureflight/displaydepartureairlineflightnumberflight',
         success: function(data){
             $("div#displayairlineresult").html(data);
         }
@@ -149,7 +149,7 @@ function  ArrivalDataUpdate(){
 }
 
 function updatingArrivalData(){
-    $("p.ajaxPart2").load("/DIAWebZend/public/index/arrivalupdatingajax");
+    $("p.ajaxPart2").load("/DIAWebZend_Morning/public/index/arrivalupdatingajax");
 }
 
 function  DepartureDataUpdate(){
@@ -161,36 +161,36 @@ function  DepartureDataUpdate(){
 }
 
 function updatingDepartureData(){
-    $("p.ajaxPart1").load("/DIAWebZend/public/departureflight/departureupdatingajax");
+    $("p.ajaxPart1").load("/DIAWebZend_Morning/public/departureflight/departureupdatingajax");
 }
 
 function useDepartureAjax(){
     $.ajax({
         cache: false,
-        url: '/DIAWebZend/public/departureflight/populatedeparturetable',
+        url: '/DIAWebZend_Morning/public/departureflight/populatedeparturetable',
         success: updatedDepartureData
     });
 }
 
 function updatedDepartureData(){
-    $("p.ajaxPart1").load("/DIAWebZend/public/departureflight/departureupdatedajax");
+    $("p.ajaxPart1").load("/DIAWebZend_Morning/public/departureflight/departureupdatedajax");
     $("#progressbar1").hide(3000);
     //$("#arrivalUpdateTime").load("/DIAWebZend/public/index/arrivaltimeupdateajax");
-    $("#departureUpdateTime").load("/DIAWebZend/public/departureflight/departuretimeupdateajax");
+    $("#departureUpdateTime").load("/DIAWebZend_Morning/public/departureflight/departuretimeupdateajax");
 }
 
 function useArrivalAjax(){
     $.ajax({
         cache: false,
-        url: '/DIAWebZend/public/index/populatearrivaltable',
+        url: '/DIAWebZend_Morning/public/index/populatearrivaltable',
         success: updatedArrivalData
     });
 }
 
 function updatedArrivalData(){
-    $("p.ajaxPart2").load("/DIAWebZend/public/index/arrivalupdatedajax");
+    $("p.ajaxPart2").load("/DIAWebZend_Morning/public/index/arrivalupdatedajax");
     $("#progressbar2").hide(3000);
-    $("#arrivalUpdateTime").load("/DIAWebZend/public/index/arrivaltimeupdateajax");
+    $("#arrivalUpdateTime").load("/DIAWebZend_Morning/public/index/arrivaltimeupdateajax");
     //$("#departureUpdateTime").load("/DIAWebZend/public/departureflight/departuretimeupdateajax");
 }
 
