@@ -166,6 +166,7 @@ function updatingDepartureData(){
 
 function useDepartureAjax(){
     $.ajax({
+        cache: false,
         url: '/DIAWebZend/public/departureflight/populatedeparturetable',
         success: updatedDepartureData
     });
@@ -180,6 +181,7 @@ function updatedDepartureData(){
 
 function useArrivalAjax(){
     $.ajax({
+        cache: false,
         url: '/DIAWebZend/public/index/populatearrivaltable',
         success: updatedArrivalData
     });
@@ -198,7 +200,7 @@ function startDepartureProgress()
     if(count < 100)
     {
         count = count+0.1;
-        setTimeout("startDepartureProgress()", 140);
+        setTimeout("startDepartureProgress()", 153);
     }
 
     $("#progressbar1").progressbar({
@@ -211,7 +213,7 @@ function startArrivalProgress()
     if(count < 100)
     {
         count = count+ 0.1;
-        setTimeout("startArrivalProgress()", 140);
+        setTimeout("startArrivalProgress()", 153);
     }
 
     $("#progressbar2").progressbar({
